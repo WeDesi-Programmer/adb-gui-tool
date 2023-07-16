@@ -15,6 +15,7 @@ namespace ADB_GUI_Tool
     {
         Process CmdLine = new Process();
         String ApkFile = "";
+        String PushFile = "";
         public MainToolWindow()
         {
             InitializeComponent();
@@ -54,6 +55,8 @@ namespace ADB_GUI_Tool
                         IpAddrTextBox.Enabled = false;
                         ApkBrowseButton.Enabled = true;
                         EnRootCheckBox.Enabled = true;
+                        PushFileBrowseButton.Enabled = true;
+                        AospPathTextBox.Enabled = true;
                     }
                     else
                     {
@@ -76,8 +79,15 @@ namespace ADB_GUI_Tool
                         IpAddrTextBox.Enabled = true;
                         ApkBrowseButton.Enabled = false;
                         InstallApkButton.Enabled = false;
+                        InstallApkResetButton.Enabled = false;
                         EnRootCheckBox.Enabled = false;
                         EnRootCheckBox.Checked = false;
+                        AdbRemountCheckBox.Enabled = false;
+                        AdbRemountCheckBox.Checked = false;
+                        PushFileBrowseButton.Enabled = false;
+                        PushFileButton.Enabled = false;
+                        PushFileResetButton.Enabled = false;
+                        AospPathTextBox.Enabled = false;
                     }
                 }
             }
@@ -203,7 +213,84 @@ namespace ADB_GUI_Tool
 
                 AdbRootCmdOutput = CmdLine.StandardOutput.ReadToEnd();
                 CmdOutputRichTextBox.AppendText(AdbRootCmdOutput.ToString());
+
+                AdbRemountCheckBox.Enabled = true;
             }
+        }
+
+        private void AdbRemountCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (AdbRemountCheckBox.Checked == true)
+            {
+                String AdbRemountCmdOutput = "";
+
+                AdbRemountCheckBox.Enabled = false;
+
+                CmdLine.Start();
+                CmdLine.StandardInput.WriteLine("adb remount");
+                CmdLine.StandardInput.Flush();
+                CmdLine.StandardInput.Close();
+
+                AdbRemountCmdOutput = CmdLine.StandardOutput.ReadToEnd();
+                CmdOutputRichTextBox.AppendText(AdbRemountCmdOutput.ToString());
+            }
+        }
+
+        private void MainToolWindow_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            CmdLine.Close();
+        }
+
+        private void PushFileBrowseButton_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog PushFileSelectDialog = new OpenFileDialog();
+            PushFileSelectDialog.Title = "Select a File to Push";
+            PushFileSelectDialog.Filter = "All Files (*.*)|*.*";
+
+            if (PushFileSelectDialog.ShowDialog() == DialogResult.OK)
+            {
+                PushFile = PushFileSelectDialog.FileName;
+                PushFilePathLabel.Text = PushFile.ToString();
+                PushFileButton.Enabled = true;
+                PushFileResetButton.Enabled = true;
+            }
+        }
+
+        private void PushFileResetButton_Click(object sender, EventArgs e)
+        {
+            AospPathTextBox.Text = null;
+            PushFilePathLabel.Text = null;
+            PushFileButton.Enabled = false;
+            PushFileResetButton.Enabled = false;
+        }
+
+        private void PushFileButton_Click(object sender, EventArgs e)
+        {
+            String PushFileCmdOutput = "";
+            string PushFileCmd = "adb push " + PushFile.ToString() + " " + AospPathTextBox.Text.ToString();
+
+            CmdLine.Start();
+            CmdLine.StandardInput.WriteLine(PushFileCmd.ToString());
+            CmdLine.StandardInput.Flush();
+            CmdLine.StandardInput.Close();
+
+            PushFileCmdOutput = CmdLine.StandardOutput.ReadToEnd();
+            CmdOutputRichTextBox.AppendText(PushFileCmdOutput.ToString());
+
+            if (PushFileCmdOutput.Contains("1 file pushed") == true)
+            {
+                MessageBox.Show("Success to PUSH a file onto the Android Device!", "ADB GUI Tool - Push File", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Failed to PUSH a file onto the Android Device!", "ADB GUI Tool - Push File", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            PushFile = null;
+            AospPathTextBox.Text = null;
+            PushFilePathLabel.Text = null;
+            PushFileButton.Enabled = false;
+            PushFileResetButton.Enabled = false;
         }
     }
 }

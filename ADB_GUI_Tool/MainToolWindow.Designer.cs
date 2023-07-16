@@ -33,18 +33,28 @@
             this.ConnectButton = new System.Windows.Forms.Button();
             this.IpAddrTextBox = new System.Windows.Forms.TextBox();
             this.ConnectivityGroupBox = new System.Windows.Forms.GroupBox();
+            this.AdbRemountCheckBox = new System.Windows.Forms.CheckBox();
+            this.EnRootCheckBox = new System.Windows.Forms.CheckBox();
             this.IpAddrLabel = new System.Windows.Forms.Label();
             this.InstallApkGroupBox = new System.Windows.Forms.GroupBox();
-            this.ApkBrowseButton = new System.Windows.Forms.Button();
-            this.ApkNameLabel = new System.Windows.Forms.Label();
-            this.SelectedApkLabel = new System.Windows.Forms.Label();
-            this.InstallApkButton = new System.Windows.Forms.Button();
-            this.EnD_CheckBox = new System.Windows.Forms.CheckBox();
-            this.EnR_CheckBox = new System.Windows.Forms.CheckBox();
             this.InstallApkResetButton = new System.Windows.Forms.Button();
-            this.EnRootCheckBox = new System.Windows.Forms.CheckBox();
+            this.EnR_CheckBox = new System.Windows.Forms.CheckBox();
+            this.EnD_CheckBox = new System.Windows.Forms.CheckBox();
+            this.InstallApkButton = new System.Windows.Forms.Button();
+            this.SelectedApkLabel = new System.Windows.Forms.Label();
+            this.ApkNameLabel = new System.Windows.Forms.Label();
+            this.ApkBrowseButton = new System.Windows.Forms.Button();
+            this.PushFileGroupBox = new System.Windows.Forms.GroupBox();
+            this.PushFileButton = new System.Windows.Forms.Button();
+            this.PushFileBrowseButton = new System.Windows.Forms.Button();
+            this.AospPathTextBox = new System.Windows.Forms.TextBox();
+            this.FilePushLabel = new System.Windows.Forms.Label();
+            this.AospPathLabel = new System.Windows.Forms.Label();
+            this.PushFilePathLabel = new System.Windows.Forms.Label();
+            this.PushFileResetButton = new System.Windows.Forms.Button();
             this.ConnectivityGroupBox.SuspendLayout();
             this.InstallApkGroupBox.SuspendLayout();
+            this.PushFileGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // CmdOutputRichTextBox
@@ -85,6 +95,7 @@
             // 
             // ConnectivityGroupBox
             // 
+            this.ConnectivityGroupBox.Controls.Add(this.AdbRemountCheckBox);
             this.ConnectivityGroupBox.Controls.Add(this.EnRootCheckBox);
             this.ConnectivityGroupBox.Controls.Add(this.IpAddrLabel);
             this.ConnectivityGroupBox.Controls.Add(this.IpAddrTextBox);
@@ -97,6 +108,32 @@
             this.ConnectivityGroupBox.TabIndex = 3;
             this.ConnectivityGroupBox.TabStop = false;
             this.ConnectivityGroupBox.Text = "Connectivity";
+            // 
+            // AdbRemountCheckBox
+            // 
+            this.AdbRemountCheckBox.AutoSize = true;
+            this.AdbRemountCheckBox.Enabled = false;
+            this.AdbRemountCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AdbRemountCheckBox.Location = new System.Drawing.Point(213, 37);
+            this.AdbRemountCheckBox.Name = "AdbRemountCheckBox";
+            this.AdbRemountCheckBox.Size = new System.Drawing.Size(94, 17);
+            this.AdbRemountCheckBox.TabIndex = 5;
+            this.AdbRemountCheckBox.Text = "ADB Remount";
+            this.AdbRemountCheckBox.UseVisualStyleBackColor = true;
+            this.AdbRemountCheckBox.CheckedChanged += new System.EventHandler(this.AdbRemountCheckBox_CheckedChanged);
+            // 
+            // EnRootCheckBox
+            // 
+            this.EnRootCheckBox.AutoSize = true;
+            this.EnRootCheckBox.Enabled = false;
+            this.EnRootCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EnRootCheckBox.Location = new System.Drawing.Point(213, 16);
+            this.EnRootCheckBox.Name = "EnRootCheckBox";
+            this.EnRootCheckBox.Size = new System.Drawing.Size(110, 17);
+            this.EnRootCheckBox.TabIndex = 4;
+            this.EnRootCheckBox.Text = "Enable ADB Root";
+            this.EnRootCheckBox.UseVisualStyleBackColor = true;
+            this.EnRootCheckBox.CheckedChanged += new System.EventHandler(this.EnRootCheckBox_CheckedChanged);
             // 
             // IpAddrLabel
             // 
@@ -126,58 +163,17 @@
             this.InstallApkGroupBox.TabStop = false;
             this.InstallApkGroupBox.Text = "Install Application";
             // 
-            // ApkBrowseButton
+            // InstallApkResetButton
             // 
-            this.ApkBrowseButton.Enabled = false;
-            this.ApkBrowseButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ApkBrowseButton.Location = new System.Drawing.Point(6, 19);
-            this.ApkBrowseButton.Name = "ApkBrowseButton";
-            this.ApkBrowseButton.Size = new System.Drawing.Size(75, 23);
-            this.ApkBrowseButton.TabIndex = 0;
-            this.ApkBrowseButton.Text = "Browse...";
-            this.ApkBrowseButton.UseVisualStyleBackColor = true;
-            this.ApkBrowseButton.Click += new System.EventHandler(this.ApkBrowseButton_Click);
-            // 
-            // ApkNameLabel
-            // 
-            this.ApkNameLabel.AutoSize = true;
-            this.ApkNameLabel.Location = new System.Drawing.Point(10, 49);
-            this.ApkNameLabel.Name = "ApkNameLabel";
-            this.ApkNameLabel.Size = new System.Drawing.Size(59, 13);
-            this.ApkNameLabel.TabIndex = 1;
-            this.ApkNameLabel.Text = "APK File:";
-            // 
-            // SelectedApkLabel
-            // 
-            this.SelectedApkLabel.AutoSize = true;
-            this.SelectedApkLabel.Location = new System.Drawing.Point(76, 48);
-            this.SelectedApkLabel.Name = "SelectedApkLabel";
-            this.SelectedApkLabel.Size = new System.Drawing.Size(0, 13);
-            this.SelectedApkLabel.TabIndex = 2;
-            // 
-            // InstallApkButton
-            // 
-            this.InstallApkButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.InstallApkButton.Location = new System.Drawing.Point(319, 19);
-            this.InstallApkButton.Name = "InstallApkButton";
-            this.InstallApkButton.Size = new System.Drawing.Size(75, 23);
-            this.InstallApkButton.TabIndex = 3;
-            this.InstallApkButton.Text = "INSTALL";
-            this.InstallApkButton.UseVisualStyleBackColor = true;
-            this.InstallApkButton.Click += new System.EventHandler(this.InstallApkButton_Click);
-            // 
-            // EnD_CheckBox
-            // 
-            this.EnD_CheckBox.AutoSize = true;
-            this.EnD_CheckBox.Enabled = false;
-            this.EnD_CheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.EnD_CheckBox.Location = new System.Drawing.Point(226, 23);
-            this.EnD_CheckBox.Name = "EnD_CheckBox";
-            this.EnD_CheckBox.Size = new System.Drawing.Size(35, 17);
-            this.EnD_CheckBox.TabIndex = 4;
-            this.EnD_CheckBox.Text = "-d";
-            this.EnD_CheckBox.UseVisualStyleBackColor = true;
-            this.EnD_CheckBox.CheckedChanged += new System.EventHandler(this.EnD_CheckBox_CheckedChanged);
+            this.InstallApkResetButton.Enabled = false;
+            this.InstallApkResetButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.InstallApkResetButton.Location = new System.Drawing.Point(87, 19);
+            this.InstallApkResetButton.Name = "InstallApkResetButton";
+            this.InstallApkResetButton.Size = new System.Drawing.Size(75, 23);
+            this.InstallApkResetButton.TabIndex = 7;
+            this.InstallApkResetButton.Text = "Reset";
+            this.InstallApkResetButton.UseVisualStyleBackColor = true;
+            this.InstallApkResetButton.Click += new System.EventHandler(this.InstallApkResetButton_Click);
             // 
             // EnR_CheckBox
             // 
@@ -192,30 +188,147 @@
             this.EnR_CheckBox.UseVisualStyleBackColor = true;
             this.EnR_CheckBox.CheckedChanged += new System.EventHandler(this.EnR_CheckBox_CheckedChanged);
             // 
-            // InstallApkResetButton
+            // EnD_CheckBox
             // 
-            this.InstallApkResetButton.Enabled = false;
-            this.InstallApkResetButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.InstallApkResetButton.Location = new System.Drawing.Point(87, 19);
-            this.InstallApkResetButton.Name = "InstallApkResetButton";
-            this.InstallApkResetButton.Size = new System.Drawing.Size(75, 23);
-            this.InstallApkResetButton.TabIndex = 7;
-            this.InstallApkResetButton.Text = "Reset";
-            this.InstallApkResetButton.UseVisualStyleBackColor = true;
-            this.InstallApkResetButton.Click += new System.EventHandler(this.InstallApkResetButton_Click);
+            this.EnD_CheckBox.AutoSize = true;
+            this.EnD_CheckBox.Enabled = false;
+            this.EnD_CheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EnD_CheckBox.Location = new System.Drawing.Point(226, 23);
+            this.EnD_CheckBox.Name = "EnD_CheckBox";
+            this.EnD_CheckBox.Size = new System.Drawing.Size(35, 17);
+            this.EnD_CheckBox.TabIndex = 4;
+            this.EnD_CheckBox.Text = "-d";
+            this.EnD_CheckBox.UseVisualStyleBackColor = true;
+            this.EnD_CheckBox.CheckedChanged += new System.EventHandler(this.EnD_CheckBox_CheckedChanged);
             // 
-            // EnRootCheckBox
+            // InstallApkButton
             // 
-            this.EnRootCheckBox.AutoSize = true;
-            this.EnRootCheckBox.Enabled = false;
-            this.EnRootCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.EnRootCheckBox.Location = new System.Drawing.Point(214, 12);
-            this.EnRootCheckBox.Name = "EnRootCheckBox";
-            this.EnRootCheckBox.Size = new System.Drawing.Size(110, 17);
-            this.EnRootCheckBox.TabIndex = 4;
-            this.EnRootCheckBox.Text = "Enable ADB Root";
-            this.EnRootCheckBox.UseVisualStyleBackColor = true;
-            this.EnRootCheckBox.CheckedChanged += new System.EventHandler(this.EnRootCheckBox_CheckedChanged);
+            this.InstallApkButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.InstallApkButton.Location = new System.Drawing.Point(319, 19);
+            this.InstallApkButton.Name = "InstallApkButton";
+            this.InstallApkButton.Size = new System.Drawing.Size(75, 23);
+            this.InstallApkButton.TabIndex = 3;
+            this.InstallApkButton.Text = "INSTALL";
+            this.InstallApkButton.UseVisualStyleBackColor = true;
+            this.InstallApkButton.Click += new System.EventHandler(this.InstallApkButton_Click);
+            // 
+            // SelectedApkLabel
+            // 
+            this.SelectedApkLabel.AutoSize = true;
+            this.SelectedApkLabel.Location = new System.Drawing.Point(76, 48);
+            this.SelectedApkLabel.Name = "SelectedApkLabel";
+            this.SelectedApkLabel.Size = new System.Drawing.Size(0, 13);
+            this.SelectedApkLabel.TabIndex = 2;
+            // 
+            // ApkNameLabel
+            // 
+            this.ApkNameLabel.AutoSize = true;
+            this.ApkNameLabel.Location = new System.Drawing.Point(10, 49);
+            this.ApkNameLabel.Name = "ApkNameLabel";
+            this.ApkNameLabel.Size = new System.Drawing.Size(59, 13);
+            this.ApkNameLabel.TabIndex = 1;
+            this.ApkNameLabel.Text = "APK File:";
+            // 
+            // ApkBrowseButton
+            // 
+            this.ApkBrowseButton.Enabled = false;
+            this.ApkBrowseButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ApkBrowseButton.Location = new System.Drawing.Point(6, 19);
+            this.ApkBrowseButton.Name = "ApkBrowseButton";
+            this.ApkBrowseButton.Size = new System.Drawing.Size(75, 23);
+            this.ApkBrowseButton.TabIndex = 0;
+            this.ApkBrowseButton.Text = "Browse...";
+            this.ApkBrowseButton.UseVisualStyleBackColor = true;
+            this.ApkBrowseButton.Click += new System.EventHandler(this.ApkBrowseButton_Click);
+            // 
+            // PushFileGroupBox
+            // 
+            this.PushFileGroupBox.Controls.Add(this.PushFileResetButton);
+            this.PushFileGroupBox.Controls.Add(this.PushFilePathLabel);
+            this.PushFileGroupBox.Controls.Add(this.PushFileButton);
+            this.PushFileGroupBox.Controls.Add(this.PushFileBrowseButton);
+            this.PushFileGroupBox.Controls.Add(this.AospPathTextBox);
+            this.PushFileGroupBox.Controls.Add(this.FilePushLabel);
+            this.PushFileGroupBox.Controls.Add(this.AospPathLabel);
+            this.PushFileGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PushFileGroupBox.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.PushFileGroupBox.Location = new System.Drawing.Point(10, 155);
+            this.PushFileGroupBox.Name = "PushFileGroupBox";
+            this.PushFileGroupBox.Size = new System.Drawing.Size(409, 100);
+            this.PushFileGroupBox.TabIndex = 5;
+            this.PushFileGroupBox.TabStop = false;
+            this.PushFileGroupBox.Text = "Push File";
+            // 
+            // PushFileButton
+            // 
+            this.PushFileButton.Enabled = false;
+            this.PushFileButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PushFileButton.Location = new System.Drawing.Point(309, 70);
+            this.PushFileButton.Name = "PushFileButton";
+            this.PushFileButton.Size = new System.Drawing.Size(85, 23);
+            this.PushFileButton.TabIndex = 4;
+            this.PushFileButton.Text = "PUSH";
+            this.PushFileButton.UseVisualStyleBackColor = true;
+            this.PushFileButton.Click += new System.EventHandler(this.PushFileButton_Click);
+            // 
+            // PushFileBrowseButton
+            // 
+            this.PushFileBrowseButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PushFileBrowseButton.Location = new System.Drawing.Point(213, 70);
+            this.PushFileBrowseButton.Name = "PushFileBrowseButton";
+            this.PushFileBrowseButton.Size = new System.Drawing.Size(85, 23);
+            this.PushFileBrowseButton.TabIndex = 3;
+            this.PushFileBrowseButton.Text = "Browse...";
+            this.PushFileBrowseButton.UseVisualStyleBackColor = true;
+            this.PushFileBrowseButton.Click += new System.EventHandler(this.PushFileBrowseButton_Click);
+            // 
+            // AospPathTextBox
+            // 
+            this.AospPathTextBox.Enabled = false;
+            this.AospPathTextBox.Location = new System.Drawing.Point(77, 17);
+            this.AospPathTextBox.Name = "AospPathTextBox";
+            this.AospPathTextBox.Size = new System.Drawing.Size(317, 20);
+            this.AospPathTextBox.TabIndex = 2;
+            // 
+            // FilePushLabel
+            // 
+            this.FilePushLabel.AutoSize = true;
+            this.FilePushLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FilePushLabel.Location = new System.Drawing.Point(12, 46);
+            this.FilePushLabel.Name = "FilePushLabel";
+            this.FilePushLabel.Size = new System.Drawing.Size(65, 13);
+            this.FilePushLabel.TabIndex = 1;
+            this.FilePushLabel.Text = "File to Push:";
+            // 
+            // AospPathLabel
+            // 
+            this.AospPathLabel.AutoSize = true;
+            this.AospPathLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AospPathLabel.Location = new System.Drawing.Point(12, 20);
+            this.AospPathLabel.Name = "AospPathLabel";
+            this.AospPathLabel.Size = new System.Drawing.Size(64, 13);
+            this.AospPathLabel.TabIndex = 0;
+            this.AospPathLabel.Text = "AOSP Path:";
+            // 
+            // PushFilePathLabel
+            // 
+            this.PushFilePathLabel.AutoSize = true;
+            this.PushFilePathLabel.Location = new System.Drawing.Point(76, 46);
+            this.PushFilePathLabel.Name = "PushFilePathLabel";
+            this.PushFilePathLabel.Size = new System.Drawing.Size(0, 13);
+            this.PushFilePathLabel.TabIndex = 6;
+            // 
+            // PushFileResetButton
+            // 
+            this.PushFileResetButton.Enabled = false;
+            this.PushFileResetButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PushFileResetButton.Location = new System.Drawing.Point(6, 71);
+            this.PushFileResetButton.Name = "PushFileResetButton";
+            this.PushFileResetButton.Size = new System.Drawing.Size(85, 23);
+            this.PushFileResetButton.TabIndex = 7;
+            this.PushFileResetButton.Text = "Reset";
+            this.PushFileResetButton.UseVisualStyleBackColor = true;
+            this.PushFileResetButton.Click += new System.EventHandler(this.PushFileResetButton_Click);
             // 
             // MainToolWindow
             // 
@@ -223,6 +336,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.PushFileGroupBox);
             this.Controls.Add(this.InstallApkGroupBox);
             this.Controls.Add(this.CmdOutputRichTextBox);
             this.Controls.Add(this.ConnectivityGroupBox);
@@ -231,11 +345,14 @@
             this.Name = "MainToolWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ADB GUI Tool";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainToolWindow_FormClosing);
             this.Load += new System.EventHandler(this.MainToolWindow_Load);
             this.ConnectivityGroupBox.ResumeLayout(false);
             this.ConnectivityGroupBox.PerformLayout();
             this.InstallApkGroupBox.ResumeLayout(false);
             this.InstallApkGroupBox.PerformLayout();
+            this.PushFileGroupBox.ResumeLayout(false);
+            this.PushFileGroupBox.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -256,6 +373,15 @@
         private System.Windows.Forms.CheckBox EnD_CheckBox;
         private System.Windows.Forms.Button InstallApkResetButton;
         private System.Windows.Forms.CheckBox EnRootCheckBox;
+        private System.Windows.Forms.CheckBox AdbRemountCheckBox;
+        private System.Windows.Forms.GroupBox PushFileGroupBox;
+        private System.Windows.Forms.Label AospPathLabel;
+        private System.Windows.Forms.TextBox AospPathTextBox;
+        private System.Windows.Forms.Label FilePushLabel;
+        private System.Windows.Forms.Button PushFileBrowseButton;
+        private System.Windows.Forms.Button PushFileButton;
+        private System.Windows.Forms.Label PushFilePathLabel;
+        private System.Windows.Forms.Button PushFileResetButton;
     }
 }
 
