@@ -41,13 +41,10 @@ namespace ADB_GUI_Tool
                 {
                     string AdbCmd = "adb connect " + IpAddrTextBox.Text;
 
-                    CmdLine.Start();
-                    CmdLine.StandardInput.WriteLine(AdbCmd.ToString());
-                    CmdLine.StandardInput.Flush();
-                    CmdLine.StandardInput.Close();
+                    ExecuteCommand(AdbCmd.ToString());
 
                     ConnectCmdOutput = CmdLine.StandardOutput.ReadToEnd();
-                    CmdOutputRichTextBox.AppendText(ConnectCmdOutput.ToString());
+                    UpdateOutputTextBoxWindow(ConnectCmdOutput.ToString());
 
                     if (ConnectCmdOutput.Contains("connected to") == true)
                     {
@@ -65,13 +62,10 @@ namespace ADB_GUI_Tool
                 }
                 else
                 {
-                    CmdLine.Start();
-                    CmdLine.StandardInput.WriteLine("adb disconnect");
-                    CmdLine.StandardInput.Flush();
-                    CmdLine.StandardInput.Close();
+                    ExecuteCommand("adb disconnect");
 
                     ConnectCmdOutput = CmdLine.StandardOutput.ReadToEnd();
-                    CmdOutputRichTextBox.AppendText(ConnectCmdOutput.ToString());
+                    UpdateOutputTextBoxWindow(ConnectCmdOutput.ToString());
 
                     if (ConnectCmdOutput.Contains("disconnected everything") == true)
                     {
@@ -112,10 +106,14 @@ namespace ADB_GUI_Tool
             {
                 ApkFile = ApkSelectDialog.FileName;
                 SelectedApkLabel.Text = ApkFile.ToString();
-                InstallApkButton.Enabled = true;
-                InstallApkResetButton.Enabled = true;
-                EnD_CheckBox.Enabled = true;
-                EnR_CheckBox.Enabled = true;
+                if (ApkFile.ToString() != "")
+                {
+                    InstallApkButton.Enabled = true;
+                    InstallApkResetButton.Enabled = true;
+                    EnD_CheckBox.Enabled = true;
+                    EnR_CheckBox.Enabled = true;
+                }
+
             }
         }
 
@@ -137,13 +135,13 @@ namespace ADB_GUI_Tool
                 InstallApkCmd = "adb install " + ApkFile.ToString();
             }
             
-            CmdLine.Start();
-            CmdLine.StandardInput.WriteLine(InstallApkCmd.ToString());
-            CmdLine.StandardInput.Flush();
-            CmdLine.StandardInput.Close();
+            ExecuteCommand(InstallApkCmd.ToString());
+
+            CmdLine.WaitForExit();
 
             InstallApkCmdOutput = CmdLine.StandardOutput.ReadToEnd();
-            CmdOutputRichTextBox.AppendText(InstallApkCmdOutput.ToString());
+
+            UpdateOutputTextBoxWindow(InstallApkCmdOutput.ToString());
 
             if (InstallApkCmdOutput.Contains("Success") == true)
             {
@@ -206,13 +204,11 @@ namespace ADB_GUI_Tool
 
                 EnRootCheckBox.Enabled = false;
 
-                CmdLine.Start();
-                CmdLine.StandardInput.WriteLine("adb root");
-                CmdLine.StandardInput.Flush();
-                CmdLine.StandardInput.Close();
+                ExecuteCommand("adb root");
 
                 AdbRootCmdOutput = CmdLine.StandardOutput.ReadToEnd();
-                CmdOutputRichTextBox.AppendText(AdbRootCmdOutput.ToString());
+                
+                UpdateOutputTextBoxWindow(AdbRootCmdOutput.ToString());
 
                 AdbRemountCheckBox.Enabled = true;
             }
@@ -225,14 +221,12 @@ namespace ADB_GUI_Tool
                 String AdbRemountCmdOutput = "";
 
                 AdbRemountCheckBox.Enabled = false;
-
-                CmdLine.Start();
-                CmdLine.StandardInput.WriteLine("adb remount");
-                CmdLine.StandardInput.Flush();
-                CmdLine.StandardInput.Close();
-
+                
+                ExecuteCommand("adb remount");
+                
                 AdbRemountCmdOutput = CmdLine.StandardOutput.ReadToEnd();
-                CmdOutputRichTextBox.AppendText(AdbRemountCmdOutput.ToString());
+
+                UpdateOutputTextBoxWindow(AdbRemountCmdOutput.ToString());
             }
         }
 
@@ -269,13 +263,11 @@ namespace ADB_GUI_Tool
             String PushFileCmdOutput = "";
             string PushFileCmd = "adb push " + PushFile.ToString() + " " + AospPathTextBox.Text.ToString();
 
-            CmdLine.Start();
-            CmdLine.StandardInput.WriteLine(PushFileCmd.ToString());
-            CmdLine.StandardInput.Flush();
-            CmdLine.StandardInput.Close();
+            ExecuteCommand(PushFileCmd.ToString());
 
             PushFileCmdOutput = CmdLine.StandardOutput.ReadToEnd();
-            CmdOutputRichTextBox.AppendText(PushFileCmdOutput.ToString());
+
+            UpdateOutputTextBoxWindow(PushFileCmdOutput.ToString());
 
             if (PushFileCmdOutput.Contains("1 file pushed") == true)
             {
@@ -291,6 +283,31 @@ namespace ADB_GUI_Tool
             PushFilePathLabel.Text = null;
             PushFileButton.Enabled = false;
             PushFileResetButton.Enabled = false;
+        }
+
+        private void ClearRichTextBoxButton_Click(object sender, EventArgs e)
+        {
+            CmdOutputRichTextBox.Text = null;
+        }
+
+        private void ExecuteCommand(string CmdString)
+        {
+            CmdLine.Start();
+            CmdLine.StandardInput.WriteLine(CmdString.ToString());
+            CmdLine.StandardInput.Flush();
+            CmdLine.StandardInput.Close();
+        }
+
+        private void UpdateOutputTextBoxWindow(string OutputStream)
+        {
+            if (OverWriteRichTextBoxCheckBox.Checked == true)
+            {
+                CmdOutputRichTextBox.Text = OutputStream.ToString();
+            }
+            else
+            {
+                CmdOutputRichTextBox.AppendText(OutputStream.ToString());
+            } 
         }
     }
 }

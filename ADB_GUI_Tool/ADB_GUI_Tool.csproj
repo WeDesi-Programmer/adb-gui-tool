@@ -106,9 +106,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="ADB-Logo.ico" />
   </ItemGroup>
   <ItemGroup>

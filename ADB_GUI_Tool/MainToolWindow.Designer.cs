@@ -45,13 +45,15 @@
             this.ApkNameLabel = new System.Windows.Forms.Label();
             this.ApkBrowseButton = new System.Windows.Forms.Button();
             this.PushFileGroupBox = new System.Windows.Forms.GroupBox();
+            this.PushFileResetButton = new System.Windows.Forms.Button();
+            this.PushFilePathLabel = new System.Windows.Forms.Label();
             this.PushFileButton = new System.Windows.Forms.Button();
             this.PushFileBrowseButton = new System.Windows.Forms.Button();
             this.AospPathTextBox = new System.Windows.Forms.TextBox();
             this.FilePushLabel = new System.Windows.Forms.Label();
             this.AospPathLabel = new System.Windows.Forms.Label();
-            this.PushFilePathLabel = new System.Windows.Forms.Label();
-            this.PushFileResetButton = new System.Windows.Forms.Button();
+            this.ClearRichTextBoxButton = new System.Windows.Forms.Button();
+            this.OverWriteRichTextBoxCheckBox = new System.Windows.Forms.CheckBox();
             this.ConnectivityGroupBox.SuspendLayout();
             this.InstallApkGroupBox.SuspendLayout();
             this.PushFileGroupBox.SuspendLayout();
@@ -64,14 +66,16 @@
             this.CmdOutputRichTextBox.ForeColor = System.Drawing.Color.Lime;
             this.CmdOutputRichTextBox.Location = new System.Drawing.Point(425, 12);
             this.CmdOutputRichTextBox.Name = "CmdOutputRichTextBox";
+            this.CmdOutputRichTextBox.ReadOnly = true;
             this.CmdOutputRichTextBox.Size = new System.Drawing.Size(363, 426);
             this.CmdOutputRichTextBox.TabIndex = 0;
+            this.CmdOutputRichTextBox.TabStop = false;
             this.CmdOutputRichTextBox.Text = "";
             // 
             // ConnectButton
             // 
             this.ConnectButton.Enabled = false;
-            this.ConnectButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ConnectButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.ConnectButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ConnectButton.Location = new System.Drawing.Point(112, 16);
             this.ConnectButton.Name = "ConnectButton";
@@ -203,6 +207,7 @@
             // 
             // InstallApkButton
             // 
+            this.InstallApkButton.Enabled = false;
             this.InstallApkButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.InstallApkButton.Location = new System.Drawing.Point(319, 19);
             this.InstallApkButton.Name = "InstallApkButton";
@@ -223,9 +228,10 @@
             // ApkNameLabel
             // 
             this.ApkNameLabel.AutoSize = true;
+            this.ApkNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ApkNameLabel.Location = new System.Drawing.Point(10, 49);
             this.ApkNameLabel.Name = "ApkNameLabel";
-            this.ApkNameLabel.Size = new System.Drawing.Size(59, 13);
+            this.ApkNameLabel.Size = new System.Drawing.Size(50, 13);
             this.ApkNameLabel.TabIndex = 1;
             this.ApkNameLabel.Text = "APK File:";
             // 
@@ -258,6 +264,26 @@
             this.PushFileGroupBox.TabIndex = 5;
             this.PushFileGroupBox.TabStop = false;
             this.PushFileGroupBox.Text = "Push File";
+            // 
+            // PushFileResetButton
+            // 
+            this.PushFileResetButton.Enabled = false;
+            this.PushFileResetButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PushFileResetButton.Location = new System.Drawing.Point(6, 71);
+            this.PushFileResetButton.Name = "PushFileResetButton";
+            this.PushFileResetButton.Size = new System.Drawing.Size(85, 23);
+            this.PushFileResetButton.TabIndex = 7;
+            this.PushFileResetButton.Text = "Reset";
+            this.PushFileResetButton.UseVisualStyleBackColor = true;
+            this.PushFileResetButton.Click += new System.EventHandler(this.PushFileResetButton_Click);
+            // 
+            // PushFilePathLabel
+            // 
+            this.PushFilePathLabel.AutoSize = true;
+            this.PushFilePathLabel.Location = new System.Drawing.Point(76, 46);
+            this.PushFilePathLabel.Name = "PushFilePathLabel";
+            this.PushFilePathLabel.Size = new System.Drawing.Size(0, 13);
+            this.PushFilePathLabel.TabIndex = 6;
             // 
             // PushFileButton
             // 
@@ -310,25 +336,25 @@
             this.AospPathLabel.TabIndex = 0;
             this.AospPathLabel.Text = "AOSP Path:";
             // 
-            // PushFilePathLabel
+            // ClearRichTextBoxButton
             // 
-            this.PushFilePathLabel.AutoSize = true;
-            this.PushFilePathLabel.Location = new System.Drawing.Point(76, 46);
-            this.PushFilePathLabel.Name = "PushFilePathLabel";
-            this.PushFilePathLabel.Size = new System.Drawing.Size(0, 13);
-            this.PushFilePathLabel.TabIndex = 6;
+            this.ClearRichTextBoxButton.Location = new System.Drawing.Point(344, 415);
+            this.ClearRichTextBoxButton.Name = "ClearRichTextBoxButton";
+            this.ClearRichTextBoxButton.Size = new System.Drawing.Size(75, 23);
+            this.ClearRichTextBoxButton.TabIndex = 8;
+            this.ClearRichTextBoxButton.Text = "Clear Output";
+            this.ClearRichTextBoxButton.UseVisualStyleBackColor = true;
+            this.ClearRichTextBoxButton.Click += new System.EventHandler(this.ClearRichTextBoxButton_Click);
             // 
-            // PushFileResetButton
+            // OverWriteRichTextBoxCheckBox
             // 
-            this.PushFileResetButton.Enabled = false;
-            this.PushFileResetButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PushFileResetButton.Location = new System.Drawing.Point(6, 71);
-            this.PushFileResetButton.Name = "PushFileResetButton";
-            this.PushFileResetButton.Size = new System.Drawing.Size(85, 23);
-            this.PushFileResetButton.TabIndex = 7;
-            this.PushFileResetButton.Text = "Reset";
-            this.PushFileResetButton.UseVisualStyleBackColor = true;
-            this.PushFileResetButton.Click += new System.EventHandler(this.PushFileResetButton_Click);
+            this.OverWriteRichTextBoxCheckBox.AutoSize = true;
+            this.OverWriteRichTextBoxCheckBox.Location = new System.Drawing.Point(227, 419);
+            this.OverWriteRichTextBoxCheckBox.Name = "OverWriteRichTextBoxCheckBox";
+            this.OverWriteRichTextBoxCheckBox.Size = new System.Drawing.Size(106, 17);
+            this.OverWriteRichTextBoxCheckBox.TabIndex = 9;
+            this.OverWriteRichTextBoxCheckBox.Text = "Overwrite Output";
+            this.OverWriteRichTextBoxCheckBox.UseVisualStyleBackColor = true;
             // 
             // MainToolWindow
             // 
@@ -336,12 +362,16 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.OverWriteRichTextBoxCheckBox);
+            this.Controls.Add(this.ClearRichTextBoxButton);
             this.Controls.Add(this.PushFileGroupBox);
             this.Controls.Add(this.InstallApkGroupBox);
             this.Controls.Add(this.CmdOutputRichTextBox);
             this.Controls.Add(this.ConnectivityGroupBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "MainToolWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ADB GUI Tool";
@@ -354,6 +384,7 @@
             this.PushFileGroupBox.ResumeLayout(false);
             this.PushFileGroupBox.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -382,6 +413,8 @@
         private System.Windows.Forms.Button PushFileButton;
         private System.Windows.Forms.Label PushFilePathLabel;
         private System.Windows.Forms.Button PushFileResetButton;
+        private System.Windows.Forms.Button ClearRichTextBoxButton;
+        private System.Windows.Forms.CheckBox OverWriteRichTextBoxCheckBox;
     }
 }
 
