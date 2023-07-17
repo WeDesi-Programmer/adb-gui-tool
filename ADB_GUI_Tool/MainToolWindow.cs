@@ -53,6 +53,7 @@ namespace ADB_GUI_Tool
                         ApkBrowseButton.Enabled = true;
                         EnRootCheckBox.Enabled = true;
                         PushFileBrowseButton.Enabled = true;
+                        PushFileBrowseButton.Enabled = true;
                         AospPathTextBox.Enabled = true;
                     }
                     else
@@ -105,7 +106,7 @@ namespace ADB_GUI_Tool
             if (ApkSelectDialog.ShowDialog() == DialogResult.OK)
             {
                 ApkFile = ApkSelectDialog.FileName;
-                SelectedApkLabel.Text = ApkFile.ToString();
+                SelectedApkTextBox.Text = ApkFile.ToString();
                 if (ApkFile.ToString() != "")
                 {
                     InstallApkButton.Enabled = true;
@@ -152,11 +153,14 @@ namespace ADB_GUI_Tool
                 MessageBox.Show("Failed to install APK onto the Android Device!", "ADB GUI Tool - APK Installation", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            ApkFile = null;
-            SelectedApkLabel.Text = null;
-            InstallApkButton.Enabled = false;
-            EnD_CheckBox.Enabled = false;
-            EnR_CheckBox.Enabled = false;
+            if (AutoClearCheckBox.Checked == true)
+            {
+                ApkFile = null;
+                SelectedApkTextBox.Text = null;
+                InstallApkButton.Enabled = false;
+                EnD_CheckBox.Enabled = false;
+                EnR_CheckBox.Enabled = false;
+            }
         }
 
         private void EnD_CheckBox_CheckedChanged(object sender, EventArgs e)
@@ -189,7 +193,7 @@ namespace ADB_GUI_Tool
 
         private void InstallApkResetButton_Click(object sender, EventArgs e)
         {
-            SelectedApkLabel.Text = null;
+            SelectedApkTextBox.Text = null;
             InstallApkButton.Enabled = false;
             InstallApkResetButton.Enabled = false;
             EnD_CheckBox.Enabled = false;
@@ -244,7 +248,7 @@ namespace ADB_GUI_Tool
             if (PushFileSelectDialog.ShowDialog() == DialogResult.OK)
             {
                 PushFile = PushFileSelectDialog.FileName;
-                PushFilePathLabel.Text = PushFile.ToString();
+                PushFilePathTextBox.Text = PushFile.ToString();
                 PushFileButton.Enabled = true;
                 PushFileResetButton.Enabled = true;
             }
@@ -253,7 +257,7 @@ namespace ADB_GUI_Tool
         private void PushFileResetButton_Click(object sender, EventArgs e)
         {
             AospPathTextBox.Text = null;
-            PushFilePathLabel.Text = null;
+            PushFilePathTextBox.Text = null;
             PushFileButton.Enabled = false;
             PushFileResetButton.Enabled = false;
         }
@@ -278,11 +282,14 @@ namespace ADB_GUI_Tool
                 MessageBox.Show("Failed to PUSH a file onto the Android Device!", "ADB GUI Tool - Push File", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            PushFile = null;
-            AospPathTextBox.Text = null;
-            PushFilePathLabel.Text = null;
-            PushFileButton.Enabled = false;
-            PushFileResetButton.Enabled = false;
+            if (AutoClearCheckBox.Checked == true)
+            {
+                PushFile = null;
+                AospPathTextBox.Text = null;
+                PushFilePathTextBox.Text = null;
+                PushFileButton.Enabled = false;
+                PushFileResetButton.Enabled = false;
+            }
         }
 
         private void ClearRichTextBoxButton_Click(object sender, EventArgs e)
