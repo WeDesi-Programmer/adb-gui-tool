@@ -120,20 +120,20 @@ namespace ADB_GUI_Tool
 
         private void InstallApkButton_Click(object sender, EventArgs e)
         {
-            String InstallApkCmdOutput = "";
+            string InstallApkCmdOutput = "";
             string InstallApkCmd = "";
 
             if (EnD_CheckBox.Checked == true)
             {
-                InstallApkCmd = "adb install -d " + ApkFile.ToString();
+                InstallApkCmd = "adb install -d " + "\"" + ApkFile.ToString() + "\"";
             }
             else if (EnR_CheckBox.Checked == true)
             {
-                InstallApkCmd = "adb install -r " + ApkFile.ToString();
+                InstallApkCmd = "adb install -r " + "\"" + ApkFile.ToString() + "\"";
             }
             else
             {
-                InstallApkCmd = "adb install " + ApkFile.ToString();
+                InstallApkCmd = "adb install " + "\"" + ApkFile.ToString() + "\"";
             }
             
             ExecuteCommand(InstallApkCmd.ToString());
@@ -265,7 +265,7 @@ namespace ADB_GUI_Tool
         private void PushFileButton_Click(object sender, EventArgs e)
         {
             String PushFileCmdOutput = "";
-            string PushFileCmd = "adb push " + PushFile.ToString() + " " + AospPathTextBox.Text.ToString();
+            string PushFileCmd = "adb push " + PushFile.ToString() + " " + "\"" + AospPathTextBox.Text.ToString() + "\"";
 
             ExecuteCommand(PushFileCmd.ToString());
 
