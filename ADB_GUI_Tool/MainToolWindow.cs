@@ -34,6 +34,7 @@ namespace ADB_GUI_Tool
         private void ConnectButton_Click(object sender, EventArgs e)
         {
             string ConnectCmdOutput = "";
+            string TitleBarText = "";
 
             if (IpAddrTextBox.Text != "")
             {
@@ -57,6 +58,9 @@ namespace ADB_GUI_Tool
                         PushFileBrowseButton.Enabled = true;
                         AospPathTextBox.Enabled = true;
                         PacketNameTextBox.Enabled = true;
+
+                        //Update title bar here...
+                        TitleBarText = "ADB GUI Tool - Connected to " + IpAddrTextBox.Text;
                     }
                     else
                     {
@@ -94,8 +98,14 @@ namespace ADB_GUI_Tool
                         IsSystemAppCheckBox.Enabled = false;
                         UninstallButton.Enabled = false;
                         EnableDisablePacketButton.Enabled = false;
+
+                        //Update title bar here...
+                        TitleBarText = "ADB GUI Tool - Disconnected";
                     }
                 }
+
+                //Update Main Form Tile Bar Text
+                this.Text = TitleBarText;
             }
             else
             {
