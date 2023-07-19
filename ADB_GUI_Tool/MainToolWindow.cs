@@ -87,7 +87,7 @@ namespace ADB_GUI_Tool
                         PushFileBrowseButton.Enabled = false;
                         PushFileButton.Enabled = false;
                         PushFileResetButton.Enabled = false;
-                        AospPathTextBox.Text = null; 
+                        AospPathTextBox.Text = null;
                         AospPathTextBox.Enabled = false;
                         PacketNameTextBox.Text = null;
                         PacketNameTextBox.Enabled = false;
@@ -146,7 +146,7 @@ namespace ADB_GUI_Tool
             {
                 InstallApkCmd = "adb install " + "\"" + ApkFile.ToString() + "\"";
             }
-            
+
             ExecuteCommand(InstallApkCmd.ToString());
 
             CmdLine.WaitForExit();
@@ -222,7 +222,7 @@ namespace ADB_GUI_Tool
                 ExecuteCommand("adb root");
 
                 AdbRootCmdOutput = CmdLine.StandardOutput.ReadToEnd();
-                
+
                 UpdateOutputTextBoxWindow(AdbRootCmdOutput.ToString());
 
                 AdbRemountCheckBox.Enabled = true;
@@ -236,9 +236,9 @@ namespace ADB_GUI_Tool
                 string AdbRemountCmdOutput = "";
 
                 AdbRemountCheckBox.Enabled = false;
-                
+
                 ExecuteCommand("adb remount");
-                
+
                 AdbRemountCmdOutput = CmdLine.StandardOutput.ReadToEnd();
 
                 UpdateOutputTextBoxWindow(AdbRemountCmdOutput.ToString());
@@ -325,7 +325,7 @@ namespace ADB_GUI_Tool
             else
             {
                 CmdOutputRichTextBox.AppendText(OutputStream.ToString());
-            } 
+            }
         }
 
         private void PacketNameTextBox_TextChanged(object sender, EventArgs e)
@@ -333,7 +333,7 @@ namespace ADB_GUI_Tool
             IsSystemAppCheckBox.Enabled = true;
             IsSystemAppCheckBox.Checked = false;
             UninstallButton.Enabled = true;
-            EnableDisablePacketButton.Enabled = true;    
+            EnableDisablePacketButton.Enabled = true;
         }
 
         private void UninstallButton_Click(object sender, EventArgs e)
@@ -418,6 +418,22 @@ namespace ADB_GUI_Tool
                 {
                     MessageBox.Show("Either Packet Name is incorrect or check output window", "ADB GUI Tool - Connection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
+            }
+        }
+
+        private void RawAdbCmdTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Enter)
+            {
+                string ExecuteRawAdbCmdOutput = "";
+
+                ExecuteCommand(RawAdbCmdTextBox.Text.ToString());
+
+                ExecuteRawAdbCmdOutput = CmdLine.StandardOutput.ReadToEnd();
+
+                UpdateOutputTextBoxWindow(ExecuteRawAdbCmdOutput.ToString());
+
+                RawAdbCmdTextBox.Text = null;
             }
         }
     }

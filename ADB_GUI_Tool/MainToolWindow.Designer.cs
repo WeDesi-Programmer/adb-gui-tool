@@ -55,25 +55,32 @@
             this.ConnectButton = new System.Windows.Forms.Button();
             this.CmdOutputRichTextBox = new System.Windows.Forms.RichTextBox();
             this.AutoClearCheckBox = new System.Windows.Forms.CheckBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.PacketManagerGroupBox = new System.Windows.Forms.GroupBox();
+            this.IsSystemAppCheckBox = new System.Windows.Forms.CheckBox();
             this.UninstallButton = new System.Windows.Forms.Button();
             this.EnableDisablePacketButton = new System.Windows.Forms.Button();
             this.PacketNameTextBox = new System.Windows.Forms.TextBox();
             this.PacketNameLabel = new System.Windows.Forms.Label();
-            this.IsSystemAppCheckBox = new System.Windows.Forms.CheckBox();
+            this.RawAdbCmdGroupBox = new System.Windows.Forms.GroupBox();
+            this.RawAdbCmdTextBox = new System.Windows.Forms.TextBox();
+            this.OutputGroupBox = new System.Windows.Forms.GroupBox();
             this.PushFileGroupBox.SuspendLayout();
             this.InstallApkGroupBox.SuspendLayout();
             this.ConnectivityGroupBox.SuspendLayout();
             this.PacketManagerGroupBox.SuspendLayout();
+            this.RawAdbCmdGroupBox.SuspendLayout();
+            this.OutputGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // OverWriteRichTextBoxCheckBox
             // 
             this.OverWriteRichTextBoxCheckBox.AutoSize = true;
             this.OverWriteRichTextBoxCheckBox.BackColor = System.Drawing.Color.Black;
+            this.OverWriteRichTextBoxCheckBox.Checked = true;
+            this.OverWriteRichTextBoxCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.OverWriteRichTextBoxCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.OverWriteRichTextBoxCheckBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.OverWriteRichTextBoxCheckBox.Location = new System.Drawing.Point(227, 419);
+            this.OverWriteRichTextBoxCheckBox.Location = new System.Drawing.Point(9, 18);
             this.OverWriteRichTextBoxCheckBox.Name = "OverWriteRichTextBoxCheckBox";
             this.OverWriteRichTextBoxCheckBox.Size = new System.Drawing.Size(106, 17);
             this.OverWriteRichTextBoxCheckBox.TabIndex = 15;
@@ -86,7 +93,7 @@
             this.ClearRichTextBoxButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ClearRichTextBoxButton.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ClearRichTextBoxButton.ForeColor = System.Drawing.Color.Green;
-            this.ClearRichTextBoxButton.Location = new System.Drawing.Point(344, 415);
+            this.ClearRichTextBoxButton.Location = new System.Drawing.Point(499, 12);
             this.ClearRichTextBoxButton.Name = "ClearRichTextBoxButton";
             this.ClearRichTextBoxButton.Size = new System.Drawing.Size(75, 23);
             this.ClearRichTextBoxButton.TabIndex = 16;
@@ -416,11 +423,12 @@
             // 
             this.CmdOutputRichTextBox.BackColor = System.Drawing.Color.Black;
             this.CmdOutputRichTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.CmdOutputRichTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CmdOutputRichTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.CmdOutputRichTextBox.Location = new System.Drawing.Point(425, 25);
+            this.CmdOutputRichTextBox.Location = new System.Drawing.Point(9, 41);
             this.CmdOutputRichTextBox.Name = "CmdOutputRichTextBox";
             this.CmdOutputRichTextBox.ReadOnly = true;
-            this.CmdOutputRichTextBox.Size = new System.Drawing.Size(363, 413);
+            this.CmdOutputRichTextBox.Size = new System.Drawing.Size(565, 262);
             this.CmdOutputRichTextBox.TabIndex = 0;
             this.CmdOutputRichTextBox.TabStop = false;
             this.CmdOutputRichTextBox.Text = "";
@@ -430,24 +438,12 @@
             this.AutoClearCheckBox.AutoSize = true;
             this.AutoClearCheckBox.BackColor = System.Drawing.Color.Black;
             this.AutoClearCheckBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.AutoClearCheckBox.Location = new System.Drawing.Point(10, 419);
+            this.AutoClearCheckBox.Location = new System.Drawing.Point(10, 360);
             this.AutoClearCheckBox.Name = "AutoClearCheckBox";
             this.AutoClearCheckBox.Size = new System.Drawing.Size(75, 17);
             this.AutoClearCheckBox.TabIndex = 14;
             this.AutoClearCheckBox.Text = "Auto Clear";
             this.AutoClearCheckBox.UseVisualStyleBackColor = false;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Black;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.label1.Location = new System.Drawing.Point(425, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(58, 13);
-            this.label1.TabIndex = 11;
-            this.label1.Text = "OUTPUT";
             // 
             // PacketManagerGroupBox
             // 
@@ -464,6 +460,18 @@
             this.PacketManagerGroupBox.TabIndex = 17;
             this.PacketManagerGroupBox.TabStop = false;
             this.PacketManagerGroupBox.Text = "Packet Manager";
+            // 
+            // IsSystemAppCheckBox
+            // 
+            this.IsSystemAppCheckBox.AutoSize = true;
+            this.IsSystemAppCheckBox.Enabled = false;
+            this.IsSystemAppCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.IsSystemAppCheckBox.Location = new System.Drawing.Point(78, 47);
+            this.IsSystemAppCheckBox.Name = "IsSystemAppCheckBox";
+            this.IsSystemAppCheckBox.Size = new System.Drawing.Size(82, 17);
+            this.IsSystemAppCheckBox.TabIndex = 4;
+            this.IsSystemAppCheckBox.Text = "System App";
+            this.IsSystemAppCheckBox.UseVisualStyleBackColor = true;
             // 
             // UninstallButton
             // 
@@ -517,33 +525,58 @@
             this.PacketNameLabel.TabIndex = 0;
             this.PacketNameLabel.Text = "Packet Name:";
             // 
-            // IsSystemAppCheckBox
+            // RawAdbCmdGroupBox
             // 
-            this.IsSystemAppCheckBox.AutoSize = true;
-            this.IsSystemAppCheckBox.Enabled = false;
-            this.IsSystemAppCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.IsSystemAppCheckBox.Location = new System.Drawing.Point(78, 47);
-            this.IsSystemAppCheckBox.Name = "IsSystemAppCheckBox";
-            this.IsSystemAppCheckBox.Size = new System.Drawing.Size(82, 17);
-            this.IsSystemAppCheckBox.TabIndex = 4;
-            this.IsSystemAppCheckBox.Text = "System App";
-            this.IsSystemAppCheckBox.UseVisualStyleBackColor = true;
+            this.RawAdbCmdGroupBox.Controls.Add(this.RawAdbCmdTextBox);
+            this.RawAdbCmdGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RawAdbCmdGroupBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.RawAdbCmdGroupBox.Location = new System.Drawing.Point(442, 8);
+            this.RawAdbCmdGroupBox.Name = "RawAdbCmdGroupBox";
+            this.RawAdbCmdGroupBox.Size = new System.Drawing.Size(580, 53);
+            this.RawAdbCmdGroupBox.TabIndex = 18;
+            this.RawAdbCmdGroupBox.TabStop = false;
+            this.RawAdbCmdGroupBox.Text = "Raw ADB Command";
+            // 
+            // RawAdbCmdTextBox
+            // 
+            this.RawAdbCmdTextBox.BackColor = System.Drawing.Color.Black;
+            this.RawAdbCmdTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.RawAdbCmdTextBox.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RawAdbCmdTextBox.ForeColor = System.Drawing.Color.Lime;
+            this.RawAdbCmdTextBox.Location = new System.Drawing.Point(9, 20);
+            this.RawAdbCmdTextBox.Name = "RawAdbCmdTextBox";
+            this.RawAdbCmdTextBox.Size = new System.Drawing.Size(565, 20);
+            this.RawAdbCmdTextBox.TabIndex = 0;
+            this.RawAdbCmdTextBox.WordWrap = false;
+            this.RawAdbCmdTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RawAdbCmdTextBox_KeyDown);
+            // 
+            // OutputGroupBox
+            // 
+            this.OutputGroupBox.Controls.Add(this.CmdOutputRichTextBox);
+            this.OutputGroupBox.Controls.Add(this.ClearRichTextBoxButton);
+            this.OutputGroupBox.Controls.Add(this.OverWriteRichTextBoxCheckBox);
+            this.OutputGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OutputGroupBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.OutputGroupBox.Location = new System.Drawing.Point(442, 68);
+            this.OutputGroupBox.Name = "OutputGroupBox";
+            this.OutputGroupBox.Size = new System.Drawing.Size(580, 309);
+            this.OutputGroupBox.TabIndex = 19;
+            this.OutputGroupBox.TabStop = false;
+            this.OutputGroupBox.Text = "Output Window";
             // 
             // MainToolWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1034, 381);
+            this.Controls.Add(this.RawAdbCmdGroupBox);
             this.Controls.Add(this.PacketManagerGroupBox);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.AutoClearCheckBox);
-            this.Controls.Add(this.OverWriteRichTextBoxCheckBox);
-            this.Controls.Add(this.ClearRichTextBoxButton);
             this.Controls.Add(this.PushFileGroupBox);
             this.Controls.Add(this.InstallApkGroupBox);
-            this.Controls.Add(this.CmdOutputRichTextBox);
             this.Controls.Add(this.ConnectivityGroupBox);
+            this.Controls.Add(this.OutputGroupBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -561,6 +594,10 @@
             this.ConnectivityGroupBox.PerformLayout();
             this.PacketManagerGroupBox.ResumeLayout(false);
             this.PacketManagerGroupBox.PerformLayout();
+            this.RawAdbCmdGroupBox.ResumeLayout(false);
+            this.RawAdbCmdGroupBox.PerformLayout();
+            this.OutputGroupBox.ResumeLayout(false);
+            this.OutputGroupBox.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -594,13 +631,15 @@
         private System.Windows.Forms.RichTextBox CmdOutputRichTextBox;
         private System.Windows.Forms.TextBox PushFilePathTextBox;
         private System.Windows.Forms.CheckBox AutoClearCheckBox;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox PacketManagerGroupBox;
         private System.Windows.Forms.TextBox PacketNameTextBox;
         private System.Windows.Forms.Label PacketNameLabel;
         private System.Windows.Forms.Button EnableDisablePacketButton;
         private System.Windows.Forms.Button UninstallButton;
         private System.Windows.Forms.CheckBox IsSystemAppCheckBox;
+        private System.Windows.Forms.GroupBox RawAdbCmdGroupBox;
+        private System.Windows.Forms.TextBox RawAdbCmdTextBox;
+        private System.Windows.Forms.GroupBox OutputGroupBox;
     }
 }
 
