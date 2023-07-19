@@ -14,8 +14,8 @@ namespace ADB_GUI_Tool
     public partial class MainToolWindow : Form
     {
         Process CmdLine = new Process();
-        String ApkFile = "";
-        String PushFile = "";
+        string ApkFile = "";
+        string PushFile = "";
         public MainToolWindow()
         {
             InitializeComponent();
@@ -33,7 +33,7 @@ namespace ADB_GUI_Tool
 
         private void ConnectButton_Click(object sender, EventArgs e)
         {
-            String ConnectCmdOutput = "";
+            string ConnectCmdOutput = "";
 
             if (IpAddrTextBox.Text != "")
             {
@@ -44,6 +44,7 @@ namespace ADB_GUI_Tool
                     ExecuteCommand(AdbCmd.ToString());
 
                     ConnectCmdOutput = CmdLine.StandardOutput.ReadToEnd();
+
                     UpdateOutputTextBoxWindow(ConnectCmdOutput.ToString());
 
                     if (ConnectCmdOutput.Contains("connected to") == true)
@@ -55,6 +56,7 @@ namespace ADB_GUI_Tool
                         PushFileBrowseButton.Enabled = true;
                         PushFileBrowseButton.Enabled = true;
                         AospPathTextBox.Enabled = true;
+                        PacketNameTextBox.Enabled = true;
                     }
                     else
                     {
@@ -66,6 +68,7 @@ namespace ADB_GUI_Tool
                     ExecuteCommand("adb disconnect");
 
                     ConnectCmdOutput = CmdLine.StandardOutput.ReadToEnd();
+
                     UpdateOutputTextBoxWindow(ConnectCmdOutput.ToString());
 
                     if (ConnectCmdOutput.Contains("disconnected everything") == true)
@@ -73,16 +76,24 @@ namespace ADB_GUI_Tool
                         ConnectButton.Text = "Connect";
                         IpAddrTextBox.Enabled = true;
                         ApkBrowseButton.Enabled = false;
+                        SelectedApkTextBox.Text = null;
                         InstallApkButton.Enabled = false;
                         InstallApkResetButton.Enabled = false;
                         EnRootCheckBox.Enabled = false;
                         EnRootCheckBox.Checked = false;
                         AdbRemountCheckBox.Enabled = false;
                         AdbRemountCheckBox.Checked = false;
+                        PushFilePathTextBox.Text = null;
                         PushFileBrowseButton.Enabled = false;
                         PushFileButton.Enabled = false;
                         PushFileResetButton.Enabled = false;
+                        AospPathTextBox.Text = null; 
                         AospPathTextBox.Enabled = false;
+                        PacketNameTextBox.Text = null;
+                        PacketNameTextBox.Enabled = false;
+                        IsSystemAppCheckBox.Enabled = false;
+                        UninstallButton.Enabled = false;
+                        EnableDisablePacketButton.Enabled = false;
                     }
                 }
             }
@@ -204,7 +215,7 @@ namespace ADB_GUI_Tool
         {
             if (EnRootCheckBox.Checked == true)
             {
-                String AdbRootCmdOutput = "";
+                string AdbRootCmdOutput = "";
 
                 EnRootCheckBox.Enabled = false;
 
@@ -222,7 +233,7 @@ namespace ADB_GUI_Tool
         {
             if (AdbRemountCheckBox.Checked == true)
             {
-                String AdbRemountCmdOutput = "";
+                string AdbRemountCmdOutput = "";
 
                 AdbRemountCheckBox.Enabled = false;
                 
@@ -264,7 +275,7 @@ namespace ADB_GUI_Tool
 
         private void PushFileButton_Click(object sender, EventArgs e)
         {
-            String PushFileCmdOutput = "";
+            string PushFileCmdOutput = "";
             string PushFileCmd = "adb push " + PushFile.ToString() + " " + "\"" + AospPathTextBox.Text.ToString() + "\"";
 
             ExecuteCommand(PushFileCmd.ToString());
@@ -315,6 +326,99 @@ namespace ADB_GUI_Tool
             {
                 CmdOutputRichTextBox.AppendText(OutputStream.ToString());
             } 
+        }
+
+        private void PacketNameTextBox_TextChanged(object sender, EventArgs e)
+        {
+            IsSystemAppCheckBox.Enabled = true;
+            IsSystemAppCheckBox.Checked = false;
+            UninstallButton.Enabled = true;
+            EnableDisablePacketButton.Enabled = true;    
+        }
+
+        private void UninstallButton_Click(object sender, EventArgs e)
+        {
+            string UnimstallPacketCmdOutput = "";
+            string UnimstallPacketFileCmd = "";
+
+            if (IsSystemAppCheckBox.Checked == true)
+            {
+                UnimstallPacketFileCmd = "adb uinstall -k --user 0 " + PacketNameTextBox.Text;
+            }
+            else
+            {
+                UnimstallPacketFileCmd = "adb uinstall " + PacketNameTextBox.Text;
+            }
+
+            ExecuteCommand(UnimstallPacketFileCmd.ToString());
+
+            UnimstallPacketCmdOutput = CmdLine.StandardOutput.ReadToEnd();
+
+            UpdateOutputTextBoxWindow(UnimstallPacketCmdOutput.ToString());
+
+            if (UnimstallPacketCmdOutput.Contains("Success") == true)
+            {
+                MessageBox.Show("Success to Uninstall packet from the Android Device!", "ADB GUI Tool - Uinstall Packet", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Failed to Uinstall Packet from the Android Device!\nCheck Packet Name is correct!!!", "ADB GUI Tool - Uinstall Packet", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            if (AutoClearCheckBox.Checked == true)
+            {
+                UnimstallPacketFileCmd = null;
+                IsSystemAppCheckBox.Checked = false;
+                IsSystemAppCheckBox.Enabled = false;
+                PacketNameTextBox.Text = null;
+                UninstallButton.Enabled = false;
+                EnableDisablePacketButton.Enabled = false;
+            }
+        }
+
+        private void EnableDisablePacketButton_Click(object sender, EventArgs e)
+        {
+            string EnableDisablePacketCmdOutput = "";
+            string PacketManagerCmd = "";
+
+            if (EnableDisablePacketButton.Text == "Disable Packet")
+            {
+                PacketManagerCmd = "adb shell pm disable " + PacketNameTextBox.Text;
+
+                ExecuteCommand(PacketManagerCmd.ToString());
+
+                EnableDisablePacketCmdOutput = CmdLine.StandardOutput.ReadToEnd();
+
+                UpdateOutputTextBoxWindow(EnableDisablePacketCmdOutput.ToString());
+
+                if (EnableDisablePacketCmdOutput.Contains("disabled") == true)
+                {
+                    EnableDisablePacketButton.Text = "Enable Packet";
+                }
+                else
+                {
+                    MessageBox.Show("Either Packet Name is incorrect or check output window!", "ADB GUI Tool - Connection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            else
+            {
+                PacketManagerCmd = "adb shell pm enable " + PacketNameTextBox.Text;
+
+                ExecuteCommand(PacketManagerCmd.ToString());
+
+                EnableDisablePacketCmdOutput = CmdLine.StandardOutput.ReadToEnd();
+
+                UpdateOutputTextBoxWindow(EnableDisablePacketCmdOutput.ToString());
+
+                if (EnableDisablePacketCmdOutput.Contains("enabled") == true)
+                {
+                    EnableDisablePacketButton.Text = "Disable Packet";
+                }
+                else
+                {
+                    MessageBox.Show("Either Packet Name is incorrect or check output window", "ADB GUI Tool - Connection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
         }
     }
 }

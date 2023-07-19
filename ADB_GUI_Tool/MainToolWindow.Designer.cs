@@ -56,9 +56,16 @@
             this.CmdOutputRichTextBox = new System.Windows.Forms.RichTextBox();
             this.AutoClearCheckBox = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.PacketManagerGroupBox = new System.Windows.Forms.GroupBox();
+            this.UninstallButton = new System.Windows.Forms.Button();
+            this.EnableDisablePacketButton = new System.Windows.Forms.Button();
+            this.PacketNameTextBox = new System.Windows.Forms.TextBox();
+            this.PacketNameLabel = new System.Windows.Forms.Label();
+            this.IsSystemAppCheckBox = new System.Windows.Forms.CheckBox();
             this.PushFileGroupBox.SuspendLayout();
             this.InstallApkGroupBox.SuspendLayout();
             this.ConnectivityGroupBox.SuspendLayout();
+            this.PacketManagerGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // OverWriteRichTextBoxCheckBox
@@ -93,7 +100,7 @@
             this.AospPathLabel.BackColor = System.Drawing.Color.Black;
             this.AospPathLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AospPathLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.AospPathLabel.Location = new System.Drawing.Point(12, 20);
+            this.AospPathLabel.Location = new System.Drawing.Point(6, 21);
             this.AospPathLabel.Name = "AospPathLabel";
             this.AospPathLabel.Size = new System.Drawing.Size(64, 13);
             this.AospPathLabel.TabIndex = 0;
@@ -105,7 +112,7 @@
             this.FilePushLabel.BackColor = System.Drawing.Color.Black;
             this.FilePushLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FilePushLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.FilePushLabel.Location = new System.Drawing.Point(12, 46);
+            this.FilePushLabel.Location = new System.Drawing.Point(6, 47);
             this.FilePushLabel.Name = "FilePushLabel";
             this.FilePushLabel.Size = new System.Drawing.Size(65, 13);
             this.FilePushLabel.TabIndex = 1;
@@ -116,7 +123,7 @@
             this.AospPathTextBox.BackColor = System.Drawing.Color.Black;
             this.AospPathTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.AospPathTextBox.Enabled = false;
-            this.AospPathTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AospPathTextBox.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AospPathTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.AospPathTextBox.Location = new System.Drawing.Point(77, 17);
             this.AospPathTextBox.Name = "AospPathTextBox";
@@ -160,7 +167,7 @@
             this.PushFileResetButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.PushFileResetButton.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PushFileResetButton.ForeColor = System.Drawing.Color.Green;
-            this.PushFileResetButton.Location = new System.Drawing.Point(6, 71);
+            this.PushFileResetButton.Location = new System.Drawing.Point(9, 69);
             this.PushFileResetButton.Name = "PushFileResetButton";
             this.PushFileResetButton.Size = new System.Drawing.Size(85, 23);
             this.PushFileResetButton.TabIndex = 12;
@@ -192,7 +199,7 @@
             this.PushFilePathTextBox.BackColor = System.Drawing.Color.Black;
             this.PushFilePathTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.PushFilePathTextBox.Enabled = false;
-            this.PushFilePathTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PushFilePathTextBox.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PushFilePathTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.PushFilePathTextBox.Location = new System.Drawing.Point(77, 43);
             this.PushFilePathTextBox.Name = "PushFilePathTextBox";
@@ -206,7 +213,7 @@
             this.ApkBrowseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ApkBrowseButton.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ApkBrowseButton.ForeColor = System.Drawing.Color.Green;
-            this.ApkBrowseButton.Location = new System.Drawing.Point(6, 19);
+            this.ApkBrowseButton.Location = new System.Drawing.Point(9, 19);
             this.ApkBrowseButton.Name = "ApkBrowseButton";
             this.ApkBrowseButton.Size = new System.Drawing.Size(82, 23);
             this.ApkBrowseButton.TabIndex = 5;
@@ -250,7 +257,7 @@
             this.SelectedApkTextBox.BackColor = System.Drawing.Color.Black;
             this.SelectedApkTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.SelectedApkTextBox.Enabled = false;
-            this.SelectedApkTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SelectedApkTextBox.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SelectedApkTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.SelectedApkTextBox.Location = new System.Drawing.Point(62, 46);
             this.SelectedApkTextBox.Name = "SelectedApkTextBox";
@@ -265,7 +272,7 @@
             this.InstallApkResetButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.InstallApkResetButton.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.InstallApkResetButton.ForeColor = System.Drawing.Color.Green;
-            this.InstallApkResetButton.Location = new System.Drawing.Point(94, 19);
+            this.InstallApkResetButton.Location = new System.Drawing.Point(97, 19);
             this.InstallApkResetButton.Name = "InstallApkResetButton";
             this.InstallApkResetButton.Size = new System.Drawing.Size(75, 23);
             this.InstallApkResetButton.TabIndex = 6;
@@ -381,7 +388,7 @@
             // 
             this.IpAddrTextBox.BackColor = System.Drawing.Color.Black;
             this.IpAddrTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.IpAddrTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.IpAddrTextBox.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.IpAddrTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.IpAddrTextBox.Location = new System.Drawing.Point(68, 17);
             this.IpAddrTextBox.Name = "IpAddrTextBox";
@@ -442,12 +449,93 @@
             this.label1.TabIndex = 11;
             this.label1.Text = "OUTPUT";
             // 
+            // PacketManagerGroupBox
+            // 
+            this.PacketManagerGroupBox.Controls.Add(this.IsSystemAppCheckBox);
+            this.PacketManagerGroupBox.Controls.Add(this.UninstallButton);
+            this.PacketManagerGroupBox.Controls.Add(this.EnableDisablePacketButton);
+            this.PacketManagerGroupBox.Controls.Add(this.PacketNameTextBox);
+            this.PacketManagerGroupBox.Controls.Add(this.PacketNameLabel);
+            this.PacketManagerGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PacketManagerGroupBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.PacketManagerGroupBox.Location = new System.Drawing.Point(10, 274);
+            this.PacketManagerGroupBox.Name = "PacketManagerGroupBox";
+            this.PacketManagerGroupBox.Size = new System.Drawing.Size(409, 75);
+            this.PacketManagerGroupBox.TabIndex = 17;
+            this.PacketManagerGroupBox.TabStop = false;
+            this.PacketManagerGroupBox.Text = "Packet Manager";
+            // 
+            // UninstallButton
+            // 
+            this.UninstallButton.BackColor = System.Drawing.Color.White;
+            this.UninstallButton.Enabled = false;
+            this.UninstallButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.UninstallButton.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UninstallButton.ForeColor = System.Drawing.Color.Green;
+            this.UninstallButton.Location = new System.Drawing.Point(166, 44);
+            this.UninstallButton.Name = "UninstallButton";
+            this.UninstallButton.Size = new System.Drawing.Size(95, 23);
+            this.UninstallButton.TabIndex = 3;
+            this.UninstallButton.Text = "Uninstall";
+            this.UninstallButton.UseVisualStyleBackColor = false;
+            this.UninstallButton.Click += new System.EventHandler(this.UninstallButton_Click);
+            // 
+            // EnableDisablePacketButton
+            // 
+            this.EnableDisablePacketButton.BackColor = System.Drawing.Color.White;
+            this.EnableDisablePacketButton.Enabled = false;
+            this.EnableDisablePacketButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.EnableDisablePacketButton.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EnableDisablePacketButton.ForeColor = System.Drawing.Color.Green;
+            this.EnableDisablePacketButton.Location = new System.Drawing.Point(269, 44);
+            this.EnableDisablePacketButton.Name = "EnableDisablePacketButton";
+            this.EnableDisablePacketButton.Size = new System.Drawing.Size(125, 23);
+            this.EnableDisablePacketButton.TabIndex = 2;
+            this.EnableDisablePacketButton.Text = "Disable Packet";
+            this.EnableDisablePacketButton.UseVisualStyleBackColor = false;
+            this.EnableDisablePacketButton.Click += new System.EventHandler(this.EnableDisablePacketButton_Click);
+            // 
+            // PacketNameTextBox
+            // 
+            this.PacketNameTextBox.BackColor = System.Drawing.Color.Black;
+            this.PacketNameTextBox.Enabled = false;
+            this.PacketNameTextBox.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PacketNameTextBox.ForeColor = System.Drawing.Color.Lime;
+            this.PacketNameTextBox.Location = new System.Drawing.Point(77, 18);
+            this.PacketNameTextBox.Name = "PacketNameTextBox";
+            this.PacketNameTextBox.Size = new System.Drawing.Size(317, 20);
+            this.PacketNameTextBox.TabIndex = 1;
+            this.PacketNameTextBox.TextChanged += new System.EventHandler(this.PacketNameTextBox_TextChanged);
+            // 
+            // PacketNameLabel
+            // 
+            this.PacketNameLabel.AutoSize = true;
+            this.PacketNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PacketNameLabel.Location = new System.Drawing.Point(6, 20);
+            this.PacketNameLabel.Name = "PacketNameLabel";
+            this.PacketNameLabel.Size = new System.Drawing.Size(75, 13);
+            this.PacketNameLabel.TabIndex = 0;
+            this.PacketNameLabel.Text = "Packet Name:";
+            // 
+            // IsSystemAppCheckBox
+            // 
+            this.IsSystemAppCheckBox.AutoSize = true;
+            this.IsSystemAppCheckBox.Enabled = false;
+            this.IsSystemAppCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.IsSystemAppCheckBox.Location = new System.Drawing.Point(78, 47);
+            this.IsSystemAppCheckBox.Name = "IsSystemAppCheckBox";
+            this.IsSystemAppCheckBox.Size = new System.Drawing.Size(82, 17);
+            this.IsSystemAppCheckBox.TabIndex = 4;
+            this.IsSystemAppCheckBox.Text = "System App";
+            this.IsSystemAppCheckBox.UseVisualStyleBackColor = true;
+            // 
             // MainToolWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.PacketManagerGroupBox);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.AutoClearCheckBox);
             this.Controls.Add(this.OverWriteRichTextBoxCheckBox);
@@ -471,6 +559,8 @@
             this.InstallApkGroupBox.PerformLayout();
             this.ConnectivityGroupBox.ResumeLayout(false);
             this.ConnectivityGroupBox.PerformLayout();
+            this.PacketManagerGroupBox.ResumeLayout(false);
+            this.PacketManagerGroupBox.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -505,6 +595,12 @@
         private System.Windows.Forms.TextBox PushFilePathTextBox;
         private System.Windows.Forms.CheckBox AutoClearCheckBox;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.GroupBox PacketManagerGroupBox;
+        private System.Windows.Forms.TextBox PacketNameTextBox;
+        private System.Windows.Forms.Label PacketNameLabel;
+        private System.Windows.Forms.Button EnableDisablePacketButton;
+        private System.Windows.Forms.Button UninstallButton;
+        private System.Windows.Forms.CheckBox IsSystemAppCheckBox;
     }
 }
 
