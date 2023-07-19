@@ -64,6 +64,7 @@
             this.RawAdbCmdGroupBox = new System.Windows.Forms.GroupBox();
             this.RawAdbCmdTextBox = new System.Windows.Forms.TextBox();
             this.OutputGroupBox = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.PushFileGroupBox.SuspendLayout();
             this.InstallApkGroupBox.SuspendLayout();
             this.ConnectivityGroupBox.SuspendLayout();
@@ -564,12 +565,25 @@
             this.OutputGroupBox.TabStop = false;
             this.OutputGroupBox.Text = "Output Window";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label1.Font = new System.Drawing.Font("Constantia", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.label1.Location = new System.Drawing.Point(247, 351);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(182, 26);
+            this.label1.TabIndex = 20;
+            this.label1.Text = "Free to use GUI overlay Tool for ADB\r\nby WeDesi Programmer - Enjoy!";
+            // 
             // MainToolWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(1034, 381);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.RawAdbCmdGroupBox);
             this.Controls.Add(this.PacketManagerGroupBox);
             this.Controls.Add(this.AutoClearCheckBox);
@@ -640,6 +654,7 @@
         private System.Windows.Forms.GroupBox RawAdbCmdGroupBox;
         private System.Windows.Forms.TextBox RawAdbCmdTextBox;
         private System.Windows.Forms.GroupBox OutputGroupBox;
+        private System.Windows.Forms.Label label1;
     }
 }
 
