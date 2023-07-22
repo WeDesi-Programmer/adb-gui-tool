@@ -99,6 +99,11 @@ namespace ADB_GUI_Tool
                         IsSystemAppCheckBox.Enabled = false;
                         UninstallButton.Enabled = false;
                         EnableDisablePacketButton.Enabled = false;
+                        SaveToLocationBrowseButton.Enabled = false;
+                        PullFileButton.Enabled = false;
+                        PullFileResetButton.Enabled = false;
+                        RootedLabel.Visible = false;
+                        RemountedLabel.Visible = false;
 
                         //Update title bar here...
                         TitleBarText = "ADB GUI Tool - Disconnected";
@@ -158,9 +163,13 @@ namespace ADB_GUI_Tool
                 InstallApkCmd = "adb install " + "\"" + ApkFile.ToString() + "\"";
             }
 
+            StartProcessingRequestedCommand();
+
             ExecuteCommand(InstallApkCmd.ToString());
 
             CmdLine.WaitForExit();
+
+            RequestedCommandCompleted();
 
             InstallApkCmdOutput = CmdLine.StandardOutput.ReadToEnd();
 
@@ -183,6 +192,7 @@ namespace ADB_GUI_Tool
                 EnD_CheckBox.Enabled = false;
                 EnR_CheckBox.Enabled = false;
             }
+
         }
 
         private void EnD_CheckBox_CheckedChanged(object sender, EventArgs e)
@@ -228,15 +238,28 @@ namespace ADB_GUI_Tool
             {
                 string AdbRootCmdOutput = "";
 
-                EnRootCheckBox.Enabled = false;
-
                 ExecuteCommand("adb root");
 
                 AdbRootCmdOutput = CmdLine.StandardOutput.ReadToEnd();
 
                 UpdateOutputTextBoxWindow(AdbRootCmdOutput.ToString());
 
-                AdbRemountCheckBox.Enabled = true;
+                if ( (string.IsNullOrEmpty(AdbRootCmdOutput)) || (AdbRootCmdOutput.Contains("adbd is already running as root") == true) )
+                {
+                    EnRootCheckBox.Enabled = false;
+
+                    AdbRemountCheckBox.Enabled = true;
+
+                    RootedLabel.Visible = true;
+
+                    MessageBox.Show("ADB is running as ROOT now for the Android Device!", "ADB GUI Tool - ROOT", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    EnRootCheckBox.Checked = false;
+
+                    MessageBox.Show("Failed to run as ROOT for the Android Device!", "ADB GUI Tool - ROOT", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -246,18 +269,34 @@ namespace ADB_GUI_Tool
             {
                 string AdbRemountCmdOutput = "";
 
-                AdbRemountCheckBox.Enabled = false;
-
                 ExecuteCommand("adb remount");
 
                 AdbRemountCmdOutput = CmdLine.StandardOutput.ReadToEnd();
 
                 UpdateOutputTextBoxWindow(AdbRemountCmdOutput.ToString());
+
+                if (AdbRemountCmdOutput.Contains("remount succeeded") == true)
+                {
+                    AdbRemountCheckBox.Enabled = false;
+
+                    RemountedLabel.Visible = true;
+
+                    MessageBox.Show("ADB REMOUNT is succesful on the Android Device!", "ADB GUI Tool - REMOUNT", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    AdbRemountCheckBox.Checked = false;
+
+                    MessageBox.Show("Failed to REMOUNT on the Android Device!", "ADB GUI Tool - REMOUNT", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+                RemountedLabel.Visible = true;
             }
         }
 
         private void MainToolWindow_FormClosing(object sender, FormClosingEventArgs e)
         {
+            this.Enabled = false;
             CmdLine.Close();
         }
 
@@ -295,7 +334,13 @@ namespace ADB_GUI_Tool
             {
                 string PushFileCmd = "adb push " + "\"" + PushFile.ToString() + "\"" + " " + AospPathTextBox.Text.ToString();
 
+                StartProcessingRequestedCommand();
+
                 ExecuteCommand(PushFileCmd.ToString());
+
+                CmdLine.WaitForExit();
+
+                RequestedCommandCompleted();
 
                 PushFileCmdOutput = CmdLine.StandardOutput.ReadToEnd();
 
@@ -368,8 +413,14 @@ namespace ADB_GUI_Tool
                 UninstallPacketFileCmd = "adb uninstall " + PacketNameTextBox.Text;
             }
 
+            StartProcessingRequestedCommand();
+
             ExecuteCommand(UninstallPacketFileCmd.ToString());
 
+            CmdLine.WaitForExit();
+
+            RequestedCommandCompleted();
+            
             UninstallPacketCmdOutput = CmdLine.StandardOutput.ReadToEnd();
 
             UpdateOutputTextBoxWindow(UninstallPacketCmdOutput.ToString());
@@ -467,9 +518,15 @@ namespace ADB_GUI_Tool
             }
             else
             {
-                string PushFileCmd = "adb pull " + PullFileTextBox.Text.ToString() + " " + "\"" + PullFileFolder.ToString() + "\"" ;
+                string PullFileCmd = "adb pull " + PullFileTextBox.Text.ToString() + " " + "\"" + PullFileFolder.ToString() + "\"" ;
 
-                ExecuteCommand(PushFileCmd.ToString());
+                StartProcessingRequestedCommand();
+
+                ExecuteCommand(PullFileCmd.ToString());
+
+                CmdLine.WaitForExit();
+
+                RequestedCommandCompleted();
 
                 PullFileCmdOutput = CmdLine.StandardOutput.ReadToEnd();
 
@@ -518,6 +575,148 @@ namespace ADB_GUI_Tool
         {
             PushFileBrowseButton.Enabled = true;
             PushFileResetButton.Enabled = true;
+        }
+
+        private void StartProcessingRequestedCommand()
+        {
+            this.Cursor = Cursors.WaitCursor;
+            this.Enabled = false;
+        }
+
+        private void RequestedCommandCompleted()
+        {
+            this.Cursor = Cursors.Default;
+            this.Enabled = true;
+        }
+
+        private void OverWriteRichTextBoxCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void AospPathLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FilePushLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PushFileGroupBox_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PushFilePathTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ApkNameLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void InstallApkGroupBox_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SelectedApkTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void IpAddrLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ConnectivityGroupBox_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CmdOutputRichTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void AutoClearCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PacketManagerGroupBox_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void IsSystemAppCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PacketNameLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void RawAdbCmdGroupBox_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void RawAdbCmdTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void OutputGroupBox_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PullFileGroupBox_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PullFileSaveToTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PullFileResetButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SavePulledFileLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void AospFileLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void RootedLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void RemountedLabel_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

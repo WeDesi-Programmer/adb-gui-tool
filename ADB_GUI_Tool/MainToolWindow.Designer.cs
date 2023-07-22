@@ -73,6 +73,8 @@
             this.PullFileTextBox = new System.Windows.Forms.TextBox();
             this.SavePulledFileLabel = new System.Windows.Forms.Label();
             this.AospFileLabel = new System.Windows.Forms.Label();
+            this.RemountedLabel = new System.Windows.Forms.Label();
+            this.RootedLabel = new System.Windows.Forms.Label();
             this.PushFileGroupBox.SuspendLayout();
             this.InstallApkGroupBox.SuspendLayout();
             this.ConnectivityGroupBox.SuspendLayout();
@@ -96,6 +98,7 @@
             this.OverWriteRichTextBoxCheckBox.TabIndex = 15;
             this.OverWriteRichTextBoxCheckBox.Text = "Overwrite Output";
             this.OverWriteRichTextBoxCheckBox.UseVisualStyleBackColor = false;
+            this.OverWriteRichTextBoxCheckBox.CheckedChanged += new System.EventHandler(this.OverWriteRichTextBoxCheckBox_CheckedChanged);
             // 
             // ClearRichTextBoxButton
             // 
@@ -122,6 +125,7 @@
             this.AospPathLabel.Size = new System.Drawing.Size(64, 13);
             this.AospPathLabel.TabIndex = 0;
             this.AospPathLabel.Text = "AOSP Path:";
+            this.AospPathLabel.Click += new System.EventHandler(this.AospPathLabel_Click);
             // 
             // FilePushLabel
             // 
@@ -134,6 +138,7 @@
             this.FilePushLabel.Size = new System.Drawing.Size(65, 13);
             this.FilePushLabel.TabIndex = 1;
             this.FilePushLabel.Text = "File to Push:";
+            this.FilePushLabel.Click += new System.EventHandler(this.FilePushLabel_Click);
             // 
             // AospPathTextBox
             // 
@@ -211,6 +216,7 @@
             this.PushFileGroupBox.TabIndex = 5;
             this.PushFileGroupBox.TabStop = false;
             this.PushFileGroupBox.Text = "Push File";
+            this.PushFileGroupBox.Enter += new System.EventHandler(this.PushFileGroupBox_Enter);
             // 
             // PushFilePathTextBox
             // 
@@ -223,6 +229,7 @@
             this.PushFilePathTextBox.Name = "PushFilePathTextBox";
             this.PushFilePathTextBox.Size = new System.Drawing.Size(317, 20);
             this.PushFilePathTextBox.TabIndex = 8;
+            this.PushFilePathTextBox.TextChanged += new System.EventHandler(this.PushFilePathTextBox_TextChanged);
             // 
             // ApkBrowseButton
             // 
@@ -250,6 +257,7 @@
             this.ApkNameLabel.Size = new System.Drawing.Size(50, 13);
             this.ApkNameLabel.TabIndex = 1;
             this.ApkNameLabel.Text = "APK File:";
+            this.ApkNameLabel.Click += new System.EventHandler(this.ApkNameLabel_Click);
             // 
             // InstallApkGroupBox
             // 
@@ -269,6 +277,7 @@
             this.InstallApkGroupBox.TabIndex = 4;
             this.InstallApkGroupBox.TabStop = false;
             this.InstallApkGroupBox.Text = "Install Application";
+            this.InstallApkGroupBox.Enter += new System.EventHandler(this.InstallApkGroupBox_Enter);
             // 
             // SelectedApkTextBox
             // 
@@ -282,6 +291,7 @@
             this.SelectedApkTextBox.Size = new System.Drawing.Size(332, 20);
             this.SelectedApkTextBox.TabIndex = 10;
             this.SelectedApkTextBox.TabStop = false;
+            this.SelectedApkTextBox.TextChanged += new System.EventHandler(this.SelectedApkTextBox_TextChanged);
             // 
             // InstallApkResetButton
             // 
@@ -354,6 +364,7 @@
             this.IpAddrLabel.Size = new System.Drawing.Size(61, 13);
             this.IpAddrLabel.TabIndex = 3;
             this.IpAddrLabel.Text = "IP Address:";
+            this.IpAddrLabel.Click += new System.EventHandler(this.IpAddrLabel_Click);
             // 
             // EnRootCheckBox
             // 
@@ -362,7 +373,7 @@
             this.EnRootCheckBox.Enabled = false;
             this.EnRootCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EnRootCheckBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.EnRootCheckBox.Location = new System.Drawing.Point(226, 19);
+            this.EnRootCheckBox.Location = new System.Drawing.Point(291, 19);
             this.EnRootCheckBox.Name = "EnRootCheckBox";
             this.EnRootCheckBox.Size = new System.Drawing.Size(110, 17);
             this.EnRootCheckBox.TabIndex = 3;
@@ -377,7 +388,7 @@
             this.AdbRemountCheckBox.Enabled = false;
             this.AdbRemountCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AdbRemountCheckBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.AdbRemountCheckBox.Location = new System.Drawing.Point(226, 46);
+            this.AdbRemountCheckBox.Location = new System.Drawing.Point(291, 46);
             this.AdbRemountCheckBox.Name = "AdbRemountCheckBox";
             this.AdbRemountCheckBox.Size = new System.Drawing.Size(94, 17);
             this.AdbRemountCheckBox.TabIndex = 4;
@@ -388,6 +399,8 @@
             // ConnectivityGroupBox
             // 
             this.ConnectivityGroupBox.BackColor = System.Drawing.Color.Black;
+            this.ConnectivityGroupBox.Controls.Add(this.RootedLabel);
+            this.ConnectivityGroupBox.Controls.Add(this.RemountedLabel);
             this.ConnectivityGroupBox.Controls.Add(this.AdbRemountCheckBox);
             this.ConnectivityGroupBox.Controls.Add(this.EnRootCheckBox);
             this.ConnectivityGroupBox.Controls.Add(this.IpAddrLabel);
@@ -401,6 +414,7 @@
             this.ConnectivityGroupBox.TabIndex = 3;
             this.ConnectivityGroupBox.TabStop = false;
             this.ConnectivityGroupBox.Text = "Connectivity";
+            this.ConnectivityGroupBox.Enter += new System.EventHandler(this.ConnectivityGroupBox_Enter);
             // 
             // IpAddrTextBox
             // 
@@ -443,6 +457,7 @@
             this.CmdOutputRichTextBox.TabIndex = 0;
             this.CmdOutputRichTextBox.TabStop = false;
             this.CmdOutputRichTextBox.Text = "";
+            this.CmdOutputRichTextBox.TextChanged += new System.EventHandler(this.CmdOutputRichTextBox_TextChanged);
             // 
             // AutoClearCheckBox
             // 
@@ -455,6 +470,7 @@
             this.AutoClearCheckBox.TabIndex = 14;
             this.AutoClearCheckBox.Text = "Auto Clear";
             this.AutoClearCheckBox.UseVisualStyleBackColor = false;
+            this.AutoClearCheckBox.CheckedChanged += new System.EventHandler(this.AutoClearCheckBox_CheckedChanged);
             // 
             // PacketManagerGroupBox
             // 
@@ -471,6 +487,7 @@
             this.PacketManagerGroupBox.TabIndex = 17;
             this.PacketManagerGroupBox.TabStop = false;
             this.PacketManagerGroupBox.Text = "Packet Manager";
+            this.PacketManagerGroupBox.Enter += new System.EventHandler(this.PacketManagerGroupBox_Enter);
             // 
             // IsSystemAppCheckBox
             // 
@@ -483,6 +500,7 @@
             this.IsSystemAppCheckBox.TabIndex = 4;
             this.IsSystemAppCheckBox.Text = "System App";
             this.IsSystemAppCheckBox.UseVisualStyleBackColor = true;
+            this.IsSystemAppCheckBox.CheckedChanged += new System.EventHandler(this.IsSystemAppCheckBox_CheckedChanged);
             // 
             // UninstallButton
             // 
@@ -535,6 +553,7 @@
             this.PacketNameLabel.Size = new System.Drawing.Size(75, 13);
             this.PacketNameLabel.TabIndex = 0;
             this.PacketNameLabel.Text = "Packet Name:";
+            this.PacketNameLabel.Click += new System.EventHandler(this.PacketNameLabel_Click);
             // 
             // RawAdbCmdGroupBox
             // 
@@ -547,6 +566,7 @@
             this.RawAdbCmdGroupBox.TabIndex = 18;
             this.RawAdbCmdGroupBox.TabStop = false;
             this.RawAdbCmdGroupBox.Text = "Raw ADB Command";
+            this.RawAdbCmdGroupBox.Enter += new System.EventHandler(this.RawAdbCmdGroupBox_Enter);
             // 
             // RawAdbCmdTextBox
             // 
@@ -559,6 +579,7 @@
             this.RawAdbCmdTextBox.Size = new System.Drawing.Size(565, 20);
             this.RawAdbCmdTextBox.TabIndex = 0;
             this.RawAdbCmdTextBox.WordWrap = false;
+            this.RawAdbCmdTextBox.TextChanged += new System.EventHandler(this.RawAdbCmdTextBox_TextChanged);
             this.RawAdbCmdTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RawAdbCmdTextBox_KeyDown);
             // 
             // OutputGroupBox
@@ -574,6 +595,7 @@
             this.OutputGroupBox.TabIndex = 19;
             this.OutputGroupBox.TabStop = false;
             this.OutputGroupBox.Text = "Output Window";
+            this.OutputGroupBox.Enter += new System.EventHandler(this.OutputGroupBox_Enter);
             // 
             // label1
             // 
@@ -587,6 +609,7 @@
             this.label1.TabIndex = 20;
             this.label1.Text = "Free to use GUI overlay Tool for ADB                                             " +
     "                                      by WeDesi Programmer - Enjoy!";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // PullFileGroupBox
             // 
@@ -606,6 +629,7 @@
             this.PullFileGroupBox.TabIndex = 14;
             this.PullFileGroupBox.TabStop = false;
             this.PullFileGroupBox.Text = "Pull File";
+            this.PullFileGroupBox.Enter += new System.EventHandler(this.PullFileGroupBox_Enter);
             // 
             // PullFileSaveToTextBox
             // 
@@ -618,6 +642,7 @@
             this.PullFileSaveToTextBox.Name = "PullFileSaveToTextBox";
             this.PullFileSaveToTextBox.Size = new System.Drawing.Size(317, 20);
             this.PullFileSaveToTextBox.TabIndex = 8;
+            this.PullFileSaveToTextBox.TextChanged += new System.EventHandler(this.PullFileSaveToTextBox_TextChanged);
             // 
             // PullFileResetButton
             // 
@@ -632,6 +657,7 @@
             this.PullFileResetButton.TabIndex = 12;
             this.PullFileResetButton.Text = "Reset";
             this.PullFileResetButton.UseVisualStyleBackColor = false;
+            this.PullFileResetButton.Click += new System.EventHandler(this.PullFileResetButton_Click);
             // 
             // PullFileButton
             // 
@@ -687,6 +713,7 @@
             this.SavePulledFileLabel.Size = new System.Drawing.Size(47, 13);
             this.SavePulledFileLabel.TabIndex = 1;
             this.SavePulledFileLabel.Text = "Save to:";
+            this.SavePulledFileLabel.Click += new System.EventHandler(this.SavePulledFileLabel_Click);
             // 
             // AospFileLabel
             // 
@@ -699,6 +726,31 @@
             this.AospFileLabel.Size = new System.Drawing.Size(58, 13);
             this.AospFileLabel.TabIndex = 0;
             this.AospFileLabel.Text = "AOSP File:";
+            this.AospFileLabel.Click += new System.EventHandler(this.AospFileLabel_Click);
+            // 
+            // RemountedLabel
+            // 
+            this.RemountedLabel.AutoSize = true;
+            this.RemountedLabel.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RemountedLabel.Location = new System.Drawing.Point(210, 47);
+            this.RemountedLabel.Name = "RemountedLabel";
+            this.RemountedLabel.Size = new System.Drawing.Size(70, 14);
+            this.RemountedLabel.TabIndex = 5;
+            this.RemountedLabel.Text = "REMOUNTED";
+            this.RemountedLabel.Visible = false;
+            this.RemountedLabel.Click += new System.EventHandler(this.RemountedLabel_Click);
+            // 
+            // RootedLabel
+            // 
+            this.RootedLabel.AutoSize = true;
+            this.RootedLabel.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RootedLabel.Location = new System.Drawing.Point(231, 20);
+            this.RootedLabel.Name = "RootedLabel";
+            this.RootedLabel.Size = new System.Drawing.Size(49, 14);
+            this.RootedLabel.TabIndex = 17;
+            this.RootedLabel.Text = "ROOTED";
+            this.RootedLabel.Visible = false;
+            this.RootedLabel.Click += new System.EventHandler(this.RootedLabel_Click);
             // 
             // MainToolWindow
             // 
@@ -790,6 +842,8 @@
         private System.Windows.Forms.TextBox PullFileTextBox;
         private System.Windows.Forms.Label SavePulledFileLabel;
         private System.Windows.Forms.Label AospFileLabel;
+        private System.Windows.Forms.Label RootedLabel;
+        private System.Windows.Forms.Label RemountedLabel;
     }
 }
 
