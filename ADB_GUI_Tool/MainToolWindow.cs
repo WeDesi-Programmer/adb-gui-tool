@@ -16,6 +16,8 @@ namespace ADB_GUI_Tool
         Process CmdLine = new Process();
         string ApkFile = "";
         string PushFile = "";
+        string PullFileFolder = "";
+
         public MainToolWindow()
         {
             InitializeComponent();
@@ -54,10 +56,9 @@ namespace ADB_GUI_Tool
                         IpAddrTextBox.Enabled = false;
                         ApkBrowseButton.Enabled = true;
                         EnRootCheckBox.Enabled = true;
-                        PushFileBrowseButton.Enabled = true;
-                        PushFileBrowseButton.Enabled = true;
                         AospPathTextBox.Enabled = true;
                         PacketNameTextBox.Enabled = true;
+                        PullFileTextBox.Enabled = true;                       
 
                         //Update title bar here...
                         TitleBarText = "ADB GUI Tool - Connected to " + IpAddrTextBox.Text;
@@ -270,7 +271,6 @@ namespace ADB_GUI_Tool
             {
                 PushFile = PushFileSelectDialog.FileName;
                 PushFilePathTextBox.Text = PushFile.ToString();
-                PushFileButton.Enabled = true;
                 PushFileResetButton.Enabled = true;
             }
         }
@@ -286,30 +286,38 @@ namespace ADB_GUI_Tool
         private void PushFileButton_Click(object sender, EventArgs e)
         {
             string PushFileCmdOutput = "";
-            string PushFileCmd = "adb push " + PushFile.ToString() + " " + "\"" + AospPathTextBox.Text.ToString() + "\"";
 
-            ExecuteCommand(PushFileCmd.ToString());
-
-            PushFileCmdOutput = CmdLine.StandardOutput.ReadToEnd();
-
-            UpdateOutputTextBoxWindow(PushFileCmdOutput.ToString());
-
-            if (PushFileCmdOutput.Contains("1 file pushed") == true)
+            if ( (string.IsNullOrWhiteSpace(AospPathTextBox.Text)) && (AospPathTextBox.Text.Length >= 0) )
             {
-                MessageBox.Show("Success to PUSH a file onto the Android Device!", "ADB GUI Tool - Push File", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Android Device Path contains Whitespace!", "ADB GUI Tool - Push File", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
-                MessageBox.Show("Failed to PUSH a file onto the Android Device!", "ADB GUI Tool - Push File", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+                string PushFileCmd = "adb push " + "\"" + PushFile.ToString() + "\"" + " " + AospPathTextBox.Text.ToString();
 
-            if (AutoClearCheckBox.Checked == true)
-            {
-                PushFile = null;
-                AospPathTextBox.Text = null;
-                PushFilePathTextBox.Text = null;
-                PushFileButton.Enabled = false;
-                PushFileResetButton.Enabled = false;
+                ExecuteCommand(PushFileCmd.ToString());
+
+                PushFileCmdOutput = CmdLine.StandardOutput.ReadToEnd();
+
+                UpdateOutputTextBoxWindow(PushFileCmdOutput.ToString());
+
+                if (PushFileCmdOutput.Contains("1 file pushed") == true)
+                {
+                    MessageBox.Show("Success to PUSH a file onto the Android Device!", "ADB GUI Tool - Push File", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Failed to PUSH a file onto the Android Device!", "ADB GUI Tool - Push File", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+                if (AutoClearCheckBox.Checked == true)
+                {
+                    PushFile = null;
+                    AospPathTextBox.Text = null;
+                    PushFilePathTextBox.Text = null;
+                    PushFileButton.Enabled = false;
+                    PushFileResetButton.Enabled = false;
+                }
             }
         }
 
@@ -348,25 +356,25 @@ namespace ADB_GUI_Tool
 
         private void UninstallButton_Click(object sender, EventArgs e)
         {
-            string UnimstallPacketCmdOutput = "";
-            string UnimstallPacketFileCmd = "";
+            string UninstallPacketCmdOutput = "";
+            string UninstallPacketFileCmd = "";
 
             if (IsSystemAppCheckBox.Checked == true)
             {
-                UnimstallPacketFileCmd = "adb uinstall -k --user 0 " + PacketNameTextBox.Text;
+                UninstallPacketFileCmd = "adb uninstall -k --user 0 " + PacketNameTextBox.Text;
             }
             else
             {
-                UnimstallPacketFileCmd = "adb uinstall " + PacketNameTextBox.Text;
+                UninstallPacketFileCmd = "adb uninstall " + PacketNameTextBox.Text;
             }
 
-            ExecuteCommand(UnimstallPacketFileCmd.ToString());
+            ExecuteCommand(UninstallPacketFileCmd.ToString());
 
-            UnimstallPacketCmdOutput = CmdLine.StandardOutput.ReadToEnd();
+            UninstallPacketCmdOutput = CmdLine.StandardOutput.ReadToEnd();
 
-            UpdateOutputTextBoxWindow(UnimstallPacketCmdOutput.ToString());
+            UpdateOutputTextBoxWindow(UninstallPacketCmdOutput.ToString());
 
-            if (UnimstallPacketCmdOutput.Contains("Success") == true)
+            if (UninstallPacketCmdOutput.Contains("Success") == true)
             {
                 MessageBox.Show("Success to Uninstall packet from the Android Device!", "ADB GUI Tool - Uinstall Packet", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -377,13 +385,15 @@ namespace ADB_GUI_Tool
 
             if (AutoClearCheckBox.Checked == true)
             {
-                UnimstallPacketFileCmd = null;
+                UninstallPacketFileCmd = null;
                 IsSystemAppCheckBox.Checked = false;
                 IsSystemAppCheckBox.Enabled = false;
                 PacketNameTextBox.Text = null;
                 UninstallButton.Enabled = false;
                 EnableDisablePacketButton.Enabled = false;
             }
+
+            PacketNameTextBox.Text = null;
         }
 
         private void EnableDisablePacketButton_Click(object sender, EventArgs e)
@@ -445,6 +455,69 @@ namespace ADB_GUI_Tool
 
                 RawAdbCmdTextBox.Text = null;
             }
+        }
+
+        private void PullFileButton_Click(object sender, EventArgs e)
+        {
+            string PullFileCmdOutput = "";
+
+            if ((string.IsNullOrWhiteSpace(PullFileTextBox.Text)) && (PullFileTextBox.Text.Length >= 0))
+            {
+                MessageBox.Show("Android Device Path contains Whitespace!", "ADB GUI Tool - Pull File", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                string PushFileCmd = "adb pull " + PullFileTextBox.Text.ToString() + " " + "\"" + PullFileFolder.ToString() + "\"" ;
+
+                ExecuteCommand(PushFileCmd.ToString());
+
+                PullFileCmdOutput = CmdLine.StandardOutput.ReadToEnd();
+
+                UpdateOutputTextBoxWindow(PullFileCmdOutput.ToString());
+
+                if (PullFileCmdOutput.Contains("1 file pulled") == true)
+                {
+                    MessageBox.Show("Successfully to PULLed a file from the Android Device!", "ADB GUI Tool - Pull File", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Failed to PULL a file from the Android Device!", "ADB GUI Tool - Pull File", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+                if (AutoClearCheckBox.Checked == true)
+                {
+                    PullFileFolder = null;
+                    PullFileTextBox.Text = null;
+                    PullFileSaveToTextBox.Text = null;
+                    PullFileButton.Enabled = false;
+                    PullFileResetButton.Enabled = false;
+                }
+            }
+        }
+
+        private void SaveToLocationBrowseButton_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog PushFileSelectDialog = new FolderBrowserDialog();
+            PushFileSelectDialog.Description = "Select a File to save file being Pulled from Android device...";
+
+            if (PushFileSelectDialog.ShowDialog() == DialogResult.OK)
+            {
+                PullFileFolder = PushFileSelectDialog.SelectedPath;
+                PullFileSaveToTextBox.Text = PullFileFolder.ToString();
+                PullFileButton.Enabled = true;
+            }   
+        }
+
+        private void PullFileTextBox_TextChanged(object sender, EventArgs e)
+        {
+            SaveToLocationBrowseButton.Enabled = true;
+            PullFileResetButton.Enabled = true;
+        }
+
+        private void AospPathTextBox_TextChanged(object sender, EventArgs e)
+        {
+            PushFileBrowseButton.Enabled = true;
+            PushFileResetButton.Enabled = true;
         }
     }
 }
