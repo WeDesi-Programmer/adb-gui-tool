@@ -51,6 +51,8 @@
             this.EnRootCheckBox = new System.Windows.Forms.CheckBox();
             this.AdbRemountCheckBox = new System.Windows.Forms.CheckBox();
             this.ConnectivityGroupBox = new System.Windows.Forms.GroupBox();
+            this.RootedLabel = new System.Windows.Forms.Label();
+            this.RemountedLabel = new System.Windows.Forms.Label();
             this.IpAddrTextBox = new System.Windows.Forms.TextBox();
             this.ConnectButton = new System.Windows.Forms.Button();
             this.CmdOutputRichTextBox = new System.Windows.Forms.RichTextBox();
@@ -73,8 +75,6 @@
             this.PullFileTextBox = new System.Windows.Forms.TextBox();
             this.SavePulledFileLabel = new System.Windows.Forms.Label();
             this.AospFileLabel = new System.Windows.Forms.Label();
-            this.RemountedLabel = new System.Windows.Forms.Label();
-            this.RootedLabel = new System.Windows.Forms.Label();
             this.PushFileGroupBox.SuspendLayout();
             this.InstallApkGroupBox.SuspendLayout();
             this.ConnectivityGroupBox.SuspendLayout();
@@ -416,6 +416,30 @@
             this.ConnectivityGroupBox.Text = "Connectivity";
             this.ConnectivityGroupBox.Enter += new System.EventHandler(this.ConnectivityGroupBox_Enter);
             // 
+            // RootedLabel
+            // 
+            this.RootedLabel.AutoSize = true;
+            this.RootedLabel.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RootedLabel.Location = new System.Drawing.Point(231, 20);
+            this.RootedLabel.Name = "RootedLabel";
+            this.RootedLabel.Size = new System.Drawing.Size(49, 14);
+            this.RootedLabel.TabIndex = 17;
+            this.RootedLabel.Text = "ROOTED";
+            this.RootedLabel.Visible = false;
+            this.RootedLabel.Click += new System.EventHandler(this.RootedLabel_Click);
+            // 
+            // RemountedLabel
+            // 
+            this.RemountedLabel.AutoSize = true;
+            this.RemountedLabel.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RemountedLabel.Location = new System.Drawing.Point(210, 47);
+            this.RemountedLabel.Name = "RemountedLabel";
+            this.RemountedLabel.Size = new System.Drawing.Size(70, 14);
+            this.RemountedLabel.TabIndex = 5;
+            this.RemountedLabel.Text = "REMOUNTED";
+            this.RemountedLabel.Visible = false;
+            this.RemountedLabel.Click += new System.EventHandler(this.RemountedLabel_Click);
+            // 
             // IpAddrTextBox
             // 
             this.IpAddrTextBox.BackColor = System.Drawing.Color.Black;
@@ -727,30 +751,6 @@
             this.AospFileLabel.TabIndex = 0;
             this.AospFileLabel.Text = "AOSP File:";
             this.AospFileLabel.Click += new System.EventHandler(this.AospFileLabel_Click);
-            // 
-            // RemountedLabel
-            // 
-            this.RemountedLabel.AutoSize = true;
-            this.RemountedLabel.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RemountedLabel.Location = new System.Drawing.Point(210, 47);
-            this.RemountedLabel.Name = "RemountedLabel";
-            this.RemountedLabel.Size = new System.Drawing.Size(70, 14);
-            this.RemountedLabel.TabIndex = 5;
-            this.RemountedLabel.Text = "REMOUNTED";
-            this.RemountedLabel.Visible = false;
-            this.RemountedLabel.Click += new System.EventHandler(this.RemountedLabel_Click);
-            // 
-            // RootedLabel
-            // 
-            this.RootedLabel.AutoSize = true;
-            this.RootedLabel.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RootedLabel.Location = new System.Drawing.Point(231, 20);
-            this.RootedLabel.Name = "RootedLabel";
-            this.RootedLabel.Size = new System.Drawing.Size(49, 14);
-            this.RootedLabel.TabIndex = 17;
-            this.RootedLabel.Text = "ROOTED";
-            this.RootedLabel.Visible = false;
-            this.RootedLabel.Click += new System.EventHandler(this.RootedLabel_Click);
             // 
             // MainToolWindow
             // 
